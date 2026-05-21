@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>পাহাড় বাড়ি রিসোর্ট | Lauchapra Garo Hills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<style>
+:root{
+  --forest:#1a3a2a;--moss:#2d5a3d;--leaf:#4a8c5c;--sage:#7ab893;
+  --mist:#b8d4c2;--cream:#f4efe6;--gold:#c9a84c;--amber:#d4891a;
+  --earth:#6b4c2a;--stone:#8c7b68;--white:#fdfaf5;--dark:#0f1f16;
+  --red:#e74c3c;--green:#27ae60;--blue:#2980b9;
+  --sh:0 4px 20px rgba(15,31,22,.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Hind Siliguri',sans-serif;background:var(--cream);color:var(--forest);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 4%;transition:background .35s,box-shadow .35s}
+nav.sc{background:rgba(26,58,42,.97);box-shadow:0 3px 24px rgba(0,0,0,.22);backdrop-filter:blur(8px)}
+.nb{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nl{width:40px;height:40px;background:linear-gradient(135deg,var(--leaf),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:#fff;flex-shrink:0}
+.nn{color:#fff;font-size:.95rem;font-weight:600;line-height:1.2}
+.nn span{display:block;font-size:.6rem;font-weight:300;color:var(--mist);letter-spacing:2px}
+.nlinks{display:flex;gap:18px;list-style:none}
+.nlinks a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .25s;position:relative}
+.nlinks a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--gold);transition:width .25s}
+.nlinks a:hover{color:var(--gold)}
+.nlinks a:hover::after{width:100%}
+.nadm{background:rgba(201,168,76,.18)!important;color:var(--gold)!important;padding:5px 12px!important;border-radius:16px;border:1px solid rgba(201,168,76,.35);font-weight:600!important}
+.nadm::after{display:none!important}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hbg span{display:block;width:23px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+.hbg.op span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hbg.op span:nth-child(2){opacity:0}
+.hbg.op span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mmenu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(26,58,42,.98);padding:12px;flex-direction:column;gap:3px;z-index:999;border-top:1px solid rgba(122,184,147,.2)}
+.mmenu.op{display:flex}
+.mmenu a{color:#fff;text-decoration:none;padding:10px 14px;border-radius:8px;font-size:.9rem;font-weight:500;transition:background .2s}
+.mmenu a:hover{background:rgba(122,184,147,.14)}
+
+/* HERO */
+#hero{height:100vh;min-height:520px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hbg-img{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,25,15,.3) 0%,rgba(10,25,15,.58) 50%,rgba(10,25,15,.82) 100%),url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYQLdqQZzsPAEL5WxfXNFO4XjOM61f22AZ_sgLk3mnkqd9T6jTrgEWEXWju5SR23w9tmLt9y_l6s-_M4g5gOpi1EgNw9xSa6L-Wr5MzSlGP0Rl9UjR1qOUvkSat7bGt0f_t1UzhtdcdcIFH7H809r0VWmPyXM3aVm30_B5CSWI-LEQmkpjZHbEjsTtTeo/s2048/FB_IMG_1779293261519.jpg') center/cover no-repeat;animation:hzoom 20s ease-in-out infinite alternate}
+@keyframes hzoom{from{transform:scale(1.02)}to{transform:scale(1.08)}}
+.hc{position:relative;z-index:2;text-align:center;padding:0 20px;max-width:760px}
+.hbadge{display:inline-block;border:1px solid rgba(201,168,76,.55);color:var(--gold);font-size:.7rem;letter-spacing:4px;padding:5px 16px;border-radius:28px;margin-bottom:20px;animation:fu .7s ease .1s both}
+.htitle{font-size:clamp(2.4rem,6.5vw,4.8rem);font-weight:700;color:#fff;line-height:1.1;margin-bottom:12px;animation:fu .7s ease .25s both;text-shadow:0 3px 24px rgba(0,0,0,.4)}
+.htag{font-size:clamp(.95rem,2.2vw,1.3rem);color:var(--mist);font-weight:300;margin-bottom:32px;animation:fu .7s ease .4s both;font-style:italic}
+.hbtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fu .7s ease .55s both}
+@keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.btnp{background:linear-gradient(135deg,var(--leaf),var(--moss));color:#fff;padding:12px 30px;border-radius:38px;text-decoration:none;font-weight:600;font-size:.9rem;border:none;cursor:pointer;transition:transform .22s,box-shadow .22s;box-shadow:0 7px 22px rgba(74,140,92,.38);display:inline-block;font-family:'Hind Siliguri',sans-serif}
+.btnp:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(74,140,92,.48)}
+.btno{background:transparent;color:#fff;padding:12px 30px;border-radius:38px;text-decoration:none;font-weight:500;font-size:.9rem;border:1.5px solid rgba(255,255,255,.45);transition:all .22s;display:inline-block}
+.btno:hover{background:rgba(255,255,255,.09);border-color:#fff}
+.hscroll{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;color:rgba(255,255,255,.5);font-size:.68rem;letter-spacing:2px;animation:fu .7s ease .9s both;z-index:2}
+.sline{width:1px;height:32px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);animation:sp 1.5s ease infinite}
+@keyframes sp{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* GENERIC */
+section{padding:76px 0}
+.container{max-width:1100px;margin:0 auto;padding:0 5%}
+.stag{display:inline-block;color:var(--leaf);font-size:.7rem;letter-spacing:4px;text-transform:uppercase;font-weight:600;margin-bottom:9px}
+.stitle{font-size:clamp(1.75rem,3.8vw,2.5rem);font-weight:700;color:var(--forest);margin-bottom:12px;line-height:1.2}
+.ssub{color:var(--stone);font-size:.95rem;line-height:1.85;max-width:540px}
+.divl{width:52px;height:3px;background:linear-gradient(to right,var(--leaf),var(--gold));border-radius:2px;margin:13px 0 20px}
+.divl.c{margin:13px auto 20px}
+.tc{text-align:center}
+.rv{opacity:0;transform:translateY(32px);transition:opacity .6s ease,transform .6s ease}
+.rv.v{opacity:1;transform:translateY(0)}
+.rl{opacity:0;transform:translateX(-32px);transition:opacity .6s ease,transform .6s ease}
+.rl.v{opacity:1;transform:translateX(0)}
+.rr{opacity:0;transform:translateX(32px);transition:opacity .6s ease,transform .6s ease}
+.rr.v{opacity:1;transform:translateX(0)}
+
+/* ABOUT */
+#about{background:#fff}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.aimgs{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.ai{border-radius:11px;overflow:hidden;background:#ccc}
+.ai img{width:100%;height:175px;object-fit:cover;display:block;transition:transform .5s}
+.ai:hover img{transform:scale(1.05)}
+.ai.tall{grid-row:span 2}
+.ai.tall img{height:100%;min-height:200px}
+.afs{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.af{display:flex;align-items:flex-start;gap:12px}
+.afi{width:40px;height:40px;flex-shrink:0;background:rgba(74,140,92,.1);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;border:1px solid rgba(74,140,92,.18)}
+.af h4{font-size:.88rem;font-weight:600;color:var(--forest);margin-bottom:1px}
+.af p{font-size:.8rem;color:var(--stone);line-height:1.5}
+
+/* FACILITIES */
+#facilities{background:var(--cream)}
+.facg{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.fc{background:#fff;border-radius:14px;padding:24px 20px;text-align:center;box-shadow:var(--sh);border:1px solid rgba(74,140,92,.07);transition:transform .28s,box-shadow .28s}
+.fc:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(26,58,42,.12)}
+.fci{font-size:2.2rem;margin-bottom:12px;display:block}
+.fc h3{font-size:.9rem;font-weight:700;color:var(--forest);margin-bottom:7px}
+.fc p{font-size:.78rem;color:var(--stone);line-height:1.65}
+.fbg{display:inline-block;background:linear-gradient(135deg,var(--leaf),var(--moss));color:#fff;font-size:.63rem;padding:3px 10px;border-radius:18px;margin-top:8px;font-weight:600}
+.fbg.x{background:linear-gradient(135deg,var(--amber),var(--earth))}
+
+/* FOOD */
+#food{background:var(--forest);position:relative;overflow:hidden}
+#food::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=40') center/cover no-repeat;opacity:.07}
+.foodg{display:grid;grid-template-columns:1fr 1.1fr;gap:46px;align-items:start;position:relative;z-index:1}
+.finfo .stag{color:var(--gold)}
+.finfo .stitle{color:#fff}
+.finfo .ssub{color:var(--mist)}
+.finfo .divl{background:linear-gradient(to right,var(--gold),var(--amber))}
+.fpbadge{background:linear-gradient(135deg,var(--gold),var(--amber));padding:16px 22px;border-radius:13px;display:inline-flex;align-items:center;gap:15px;margin-top:22px}
+.fpbadge .fpn{font-size:2.2rem;font-weight:700;color:var(--dark);font-family:'Playfair Display',serif}
+.fpi p{color:var(--dark);font-weight:600;font-size:.86rem}
+.fpi span{color:rgba(15,31,22,.6);font-size:.72rem}
+.mtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.mtab{background:rgba(255,255,255,.1);color:var(--mist);border:1px solid rgba(122,184,147,.2);border-radius:18px;padding:6px 13px;font-size:.76rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:'Hind Siliguri',sans-serif}
+.mtab.ac{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+.mpanel{display:none}
+.mpanel.ac{display:block}
+.mcard{background:rgba(255,255,255,.08);border:1px solid rgba(122,184,147,.18);border-radius:13px;padding:18px}
+.mcard h4{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:11px}
+.mitems{list-style:none}
+.mitems li{font-size:.82rem;color:var(--mist);padding:5px 0;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(122,184,147,.1)}
+.mitems li:last-child{border-bottom:none}
+.mitems li::before{content:"🍃";font-size:.72rem;flex-shrink:0}
+
+/* PRICING */
+#pricing{background:#fff}
+.pcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:38px}
+.pc{background:var(--cream);border-radius:17px;padding:28px 24px;border:2px solid rgba(74,140,92,.12);transition:all .28s;position:relative;overflow:visible}
+.pc:hover{border-color:var(--leaf);transform:translateY(-5px);box-shadow:0 14px 42px rgba(26,58,42,.13)}
+.pc.ft{background:linear-gradient(135deg,var(--forest),var(--moss));border-color:var(--gold)}
+.pcbg{position:absolute;top:-10px;right:14px;background:var(--gold);color:var(--dark);font-size:.62rem;font-weight:700;padding:4px 10px;border-radius:18px;letter-spacing:.8px}
+.pci{font-size:2.2rem;margin-bottom:10px;display:block}
+.pcn{font-size:1.05rem;font-weight:700;color:var(--forest);margin-bottom:3px}
+.pc.ft .pcn{color:#fff}
+.pcc{font-size:.78rem;color:var(--stone);margin-bottom:12px}
+.pc.ft .pcc{color:var(--mist)}
+.pcp{font-size:2rem;font-weight:700;color:var(--forest);font-family:'Playfair Display',serif;line-height:1}
+.pc.ft .pcp{color:var(--gold)}
+.pcnt{font-size:.74rem;color:var(--stone);margin-bottom:4px}
+.pc.ft .pcnt{color:var(--mist)}
+.pcdv{height:1px;background:rgba(74,140,92,.14);margin:13px 0}
+.pc.ft .pcdv{background:rgba(255,255,255,.14)}
+.pcfs{list-style:none;margin:0 0 12px}
+.pcfs li{font-size:.8rem;color:var(--stone);padding:4px 0;display:flex;gap:7px;align-items:flex-start}
+.pcfs li::before{content:"✓";color:var(--leaf);font-weight:700;flex-shrink:0}
+.pc.ft .pcfs li{color:var(--mist)}
+.pc.ft .pcfs li::before{color:var(--gold)}
+.pcfa{background:rgba(212,137,26,.12);border:1px solid rgba(212,137,26,.3);border-radius:8px;padding:8px 11px;font-size:.76rem;color:var(--amber);font-weight:600;text-align:center;margin:8px 0}
+.pc.ft .pcfa{background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.35);color:var(--gold)}
+.pcmp{background:rgba(74,140,92,.07);border-radius:9px;padding:11px 13px;margin:9px 0;font-size:.73rem;color:var(--stone);line-height:1.65}
+.pc.ft .pcmp{background:rgba(255,255,255,.08);color:var(--mist)}
+.pcmp strong{color:var(--leaf);font-size:.71rem}
+.pc.ft .pcmp strong{color:var(--gold)}
+
+/* GALLERY */
+#gallery{background:var(--cream)}
+.gg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:36px}
+.gi{border-radius:11px;overflow:hidden;position:relative;cursor:pointer;background:#c8d8cc}
+.gi:first-child{grid-row:span 2}
+.gi:nth-child(5){grid-column:span 2}
+.gimg{width:100%;height:100%;min-height:185px;object-fit:cover;display:block;transition:transform .45s}
+.gi:hover .gimg{transform:scale(1.06)}
+.gov{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,58,42,.72) 0%,transparent 55%);opacity:0;transition:opacity .35s;display:flex;align-items:flex-end;padding:13px}
+.gi:hover .gov{opacity:1}
+.gov span{color:#fff;font-size:.8rem;font-weight:500}
+
+/* AVAILABILITY */
+.avb{padding:12px 18px;border-radius:12px;margin-bottom:20px;font-size:.86rem;font-weight:600;display:flex;align-items:flex-start;gap:9px;flex-wrap:wrap;line-height:1.5}
+.avb.ok{background:rgba(39,174,96,.1);border:1.5px solid rgba(39,174,96,.28);color:var(--green)}
+.avb.bk{background:rgba(231,76,60,.09);border:1.5px solid rgba(231,76,60,.28);color:var(--red)}
+.avb.ch{background:rgba(201,168,76,.1);border:1.5px solid rgba(201,168,76,.28);color:var(--amber)}
+.avb a{color:inherit;font-weight:700}
+
+/* BOOKING */
+#booking{background:#fff}
+.bwrap{display:grid;grid-template-columns:1fr 1.12fr;gap:46px;align-items:start}
+.ics{display:flex;flex-direction:column;gap:11px;margin-top:20px}
+.ic{display:flex;align-items:center;gap:12px;padding:11px 15px;background:var(--cream);border-radius:11px;border-left:3px solid var(--leaf);font-size:.85rem;font-weight:500;color:var(--forest)}
+.ic .ico{font-size:1.1rem;flex-shrink:0}
+.fcard{background:var(--cream);border-radius:18px;padding:30px;box-shadow:var(--sh)}
+.fhead{font-size:1.1rem;font-weight:700;color:var(--forest);margin-bottom:4px}
+.fsubh{font-size:.78rem;color:var(--stone);margin-bottom:20px}
+.stpind{display:flex;margin-bottom:22px;border-radius:8px;overflow:hidden;border:1px solid rgba(74,140,92,.18)}
+.stp{flex:1;text-align:center;padding:8px 4px;font-size:.7rem;font-weight:600;color:var(--stone);background:#fff;transition:all .28s;border-right:1px solid rgba(74,140,92,.18)}
+.stp:last-child{border-right:none}
+.stp.ac{color:#fff;background:var(--leaf)}
+.stp.dn{color:var(--leaf);background:rgba(74,140,92,.08)}
+.fs{display:none}
+.fs.ac{display:block}
+.fg2{margin-bottom:14px}
+.fg2 label{display:block;font-size:.78rem;font-weight:600;color:var(--forest);margin-bottom:5px}
+.fg2 input,.fg2 select,.fg2 textarea{width:100%;padding:10px 13px;border:1.5px solid rgba(74,140,92,.2);border-radius:9px;font-family:'Hind Siliguri',sans-serif;font-size:.88rem;color:var(--forest);background:#fff;transition:border-color .25s,box-shadow .25s;outline:none;-webkit-appearance:none}
+.fg2 input:focus,.fg2 select:focus,.fg2 textarea:focus{border-color:var(--leaf);box-shadow:0 0 0 3px rgba(74,140,92,.09)}
+.fg2 input.er,.fg2 select.er{border-color:var(--red)!important;box-shadow:0 0 0 2px rgba(231,76,60,.1)!important}
+.em{color:var(--red);font-size:.7rem;margin-top:3px;display:none}
+.em.sh{display:block}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.psum{background:linear-gradient(135deg,var(--forest),var(--moss));border-radius:13px;padding:18px 20px;margin:16px 0;display:none}
+.psum.sh{display:block}
+.pst{color:var(--mist);font-size:.72rem;letter-spacing:2px;margin-bottom:11px;font-weight:600}
+.psr{display:flex;justify-content:space-between;color:rgba(255,255,255,.78);font-size:.83rem;margin-bottom:6px}
+.pstot{display:flex;justify-content:space-between;color:#fff;font-size:1rem;font-weight:700;border-top:1px solid rgba(255,255,255,.14);padding-top:10px;margin-top:10px}
+.pstot span:last-child{color:var(--gold)}
+.faddon{background:rgba(212,137,26,.09);border:1.5px solid rgba(212,137,26,.28);border-radius:11px;padding:13px 15px;margin-bottom:14px}
+.fadte{font-size:.8rem;font-weight:700;color:var(--amber);margin-bottom:9px}
+.fatch{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.fatch input[type=checkbox]{accent-color:var(--amber);width:16px;height:16px;cursor:pointer}
+.fatch label{font-size:.85rem;font-weight:600;color:var(--forest);cursor:pointer}
+.fgr{display:flex;align-items:center;gap:11px;margin-top:9px;flex-wrap:wrap}
+.fgr label{font-size:.78rem;color:var(--stone);white-space:nowrap}
+.fgr input{width:74px;padding:7px 9px;border:1.5px solid rgba(212,137,26,.28);border-radius:8px;font-family:'Hind Siliguri',sans-serif;font-size:.86rem;outline:none;color:var(--forest)}
+.fps{font-size:.83rem;color:var(--amber);font-weight:700}
+.pmsel{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.pmo{border:2px solid rgba(74,140,92,.18);border-radius:11px;padding:14px 9px;text-align:center;cursor:pointer;transition:all .25s;background:#fff}
+.pmo:hover{border-color:var(--leaf);background:rgba(74,140,92,.04)}
+.pmo.sel{border-color:var(--leaf);background:rgba(74,140,92,.08)}
+.pmo .pmoi{font-size:1.5rem;margin-bottom:4px}
+.pmo .pmon{font-size:.8rem;font-weight:700;color:var(--forest)}
+.pmo .pmonu{font-size:.68rem;color:var(--stone);margin-top:1px}
+.pdets{background:rgba(74,140,92,.06);border:1px solid rgba(74,140,92,.15);border-radius:11px;padding:14px;margin-bottom:14px;display:none}
+.pdets.sh{display:block}
+.pdnum{font-size:1.2rem;font-weight:700;color:var(--forest);text-align:center;padding:12px;background:#fff;border-radius:9px;border:1.5px dashed var(--leaf);margin-bottom:11px;letter-spacing:2px}
+.trow{display:flex;align-items:flex-start;gap:9px;margin-top:11px}
+.trow input[type=checkbox]{margin-top:3px;accent-color:var(--leaf);width:15px;height:15px;flex-shrink:0;cursor:pointer}
+.trow label{font-size:.78rem;color:var(--stone);line-height:1.5}
+.trow a{color:var(--leaf);text-decoration:none;font-weight:600}
+.btnn{width:100%;background:linear-gradient(135deg,var(--leaf),var(--moss));color:#fff;padding:12px;border:none;border-radius:11px;font-family:'Hind Siliguri',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;transition:transform .22s,box-shadow .22s;box-shadow:0 5px 18px rgba(74,140,92,.28);margin-top:7px}
+.btnn:hover{transform:translateY(-2px);box-shadow:0 9px 24px rgba(74,140,92,.38)}
+.btnb{width:100%;background:transparent;color:var(--stone);padding:10px;border:1.5px solid rgba(74,140,92,.18);border-radius:11px;font-family:'Hind Siliguri',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .25s;margin-top:7px}
+.btnb:hover{background:rgba(74,140,92,.06)}
+.cbanner{display:none;padding:12px 16px;border-radius:11px;background:rgba(231,76,60,.09);border:1.5px solid rgba(231,76,60,.28);color:var(--red);font-size:.83rem;font-weight:600;margin-bottom:13px;line-height:1.6}
+.cbanner a{color:inherit;font-weight:700}
+.scard{display:none;text-align:center;padding:26px 18px}
+.scard.sh{display:block}
+.sico{font-size:3.5rem;margin-bottom:12px;animation:pi .45s cubic-bezier(.175,.885,.32,1.275) both}
+@keyframes pi{from{transform:scale(0)}to{transform:scale(1)}}
+.bidb{background:linear-gradient(135deg,var(--forest),var(--moss));color:#fff;padding:14px 20px;border-radius:13px;margin:14px auto;display:inline-block}
+.bidl{font-size:.7rem;color:var(--mist);letter-spacing:2px;margin-bottom:4px}
+.bid{font-size:1.5rem;font-weight:700;color:var(--gold);letter-spacing:4px;font-family:'Playfair Display',serif}
+.wacb{background:linear-gradient(135deg,#25d366,#1da851);color:#fff;padding:11px 22px;border-radius:38px;text-decoration:none;font-weight:600;font-size:.87rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 5px 18px rgba(37,211,102,.28);transition:transform .22s;margin-top:13px}
+.wacb:hover{transform:translateY(-2px)}
+.tbadge{display:inline-flex;align-items:center;gap:5px;background:rgba(39,174,96,.09);border:1px solid rgba(39,174,96,.22);border-radius:18px;padding:4px 11px;font-size:.75rem;font-weight:600;color:var(--green);margin-top:8px}
+.tbadge.exp{background:rgba(231,76,60,.09);border-color:rgba(231,76,60,.28);color:var(--red)}
+
+/* LOCATION */
+#location{background:var(--cream)}
+.lg{display:grid;grid-template-columns:1fr 1.5fr;gap:42px;align-items:start}
+.ld{display:flex;align-items:flex-start;gap:12px;margin-bottom:17px}
+.ldi{width:42px;height:42px;flex-shrink:0;background:rgba(74,140,92,.09);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;border:1px solid rgba(74,140,92,.14)}
+.ld h4{font-size:.86rem;font-weight:600;color:var(--forest);margin-bottom:2px}
+.ld p{font-size:.8rem;color:var(--stone);line-height:1.5}
+.mapw{border-radius:15px;overflow:hidden;box-shadow:0 10px 36px rgba(26,58,42,.13);height:340px}
+.mapw iframe{width:100%;height:100%;border:none}
+
+/* FAQ */
+#faq{background:#fff}
+.faqlist{max-width:720px;margin:36px auto 0}
+.faqit{background:var(--cream);border-radius:13px;margin-bottom:9px;overflow:hidden}
+.faqq{padding:15px 19px;font-weight:600;font-size:.9rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--forest);transition:background .25s}
+.faqq:hover{background:rgba(74,140,92,.06)}
+.faqq .fa{transition:transform .3s;font-size:.95rem;color:var(--leaf);flex-shrink:0;margin-left:8px}
+.faqq.op .fa{transform:rotate(180deg)}
+.faqa{max-height:0;overflow:hidden;transition:max-height .38s ease}
+.faqa p{padding:0 19px 15px;font-size:.84rem;color:var(--stone);line-height:1.78}
+.faqa.op{max-height:280px}
+
+/* CONTACT */
+#contact{background:var(--forest)}
+.ccards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:780px;margin:0 auto 38px}
+.ccard{background:rgba(255,255,255,.07);border:1px solid rgba(122,184,147,.18);border-radius:15px;padding:22px;text-align:center;transition:background .25s,transform .25s}
+.ccard:hover{background:rgba(255,255,255,.12);transform:translateY(-4px)}
+.ccard .cico{font-size:1.75rem;margin-bottom:9px;display:block}
+.ccard h4{font-size:.76rem;color:var(--mist);font-weight:500;margin-bottom:5px;letter-spacing:1px}
+.ccard p,.ccard a{font-size:.9rem;color:#fff;font-weight:600;text-decoration:none}
+.ccard a{color:var(--gold)}
+.wacta{display:flex;justify-content:center}
+.wab{background:linear-gradient(135deg,#25d366,#1da851);color:#fff;padding:13px 34px;border-radius:48px;text-decoration:none;font-weight:600;font-size:.9rem;display:inline-flex;align-items:center;gap:9px;box-shadow:0 7px 24px rgba(37,211,102,.32);transition:transform .22s,box-shadow .22s}
+.wab:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(37,211,102,.42)}
+
+/* FOOTER */
+footer{background:var(--dark);color:var(--mist);padding:30px 5%;text-align:center}
+footer .fb{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:5px}
+footer .fl{display:flex;justify-content:center;gap:18px;margin:11px 0;flex-wrap:wrap}
+footer .fl a{color:var(--mist);text-decoration:none;font-size:.78rem;transition:color .25s}
+footer .fl a:hover{color:var(--gold)}
+footer p{font-size:.78rem;opacity:.5;line-height:1.75}
+
+/* FLOATS */
+#scrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;background:linear-gradient(135deg,var(--leaf),var(--moss));color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 18px rgba(74,140,92,.38);opacity:0;pointer-events:none;transition:opacity .35s,transform .25s;z-index:900}
+#scrollTop.vis{opacity:1;pointer-events:all}
+#scrollTop:hover{transform:translateY(-3px)}
+#waFloat{position:fixed;bottom:72px;right:24px;width:46px;height:46px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 18px rgba(37,211,102,.45);cursor:pointer;z-index:900;text-decoration:none;animation:wap 2s ease infinite}
+@keyframes wap{0%,100%{box-shadow:0 5px 18px rgba(37,211,102,.45)}50%{box-shadow:0 5px 28px rgba(37,211,102,.75)}}
+
+/* MODALS */
+.mov{position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:2000;display:none;align-items:center;justify-content:center;padding:18px}
+.mov.op{display:flex}
+.mod{background:#fff;border-radius:18px;padding:30px;max-width:520px;width:100%;max-height:82vh;overflow-y:auto;position:relative}
+.modtit{font-size:1.15rem;font-weight:700;color:var(--forest);margin-bottom:14px}
+.modbody h4{font-size:.88rem;font-weight:700;color:var(--forest);margin:14px 0 6px}
+.modbody p,.modbody li{font-size:.81rem;color:var(--stone);line-height:1.72}
+.modbody ul{padding-left:15px;margin:6px 0}
+.xcl{position:absolute;top:14px;right:14px;background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--stone);width:28px;height:28px;display:flex;align-items:center;justify-content:center}
+
+/* ADMIN LOGIN */
+#adminLogin{display:none;position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:3000;align-items:center;justify-content:center;padding:18px}
+#adminLogin.op{display:flex}
+.alcard{background:#fff;border-radius:18px;padding:34px;max-width:360px;width:100%;box-shadow:0 18px 54px rgba(0,0,0,.28);position:relative}
+.alcard h2{font-size:1.25rem;font-weight:700;color:var(--forest);margin-bottom:4px}
+.alcard p{font-size:.78rem;color:var(--stone);margin-bottom:20px}
+.aerr{color:var(--red);font-size:.76rem;margin-top:8px;display:none;text-align:center;background:rgba(231,76,60,.08);padding:8px;border-radius:7px}
+.aerr.sh{display:block}
+
+/* ADMIN PANEL */
+#adminPanel{display:none;position:fixed;inset:0;background:#ede8e0;z-index:2500;overflow-y:auto}
+#adminPanel.op{display:block}
+.anav{background:var(--forest);padding:13px 4%;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;gap:10px;flex-wrap:wrap}
+.anav h1{color:#fff;font-size:.95rem;font-weight:700}
+.anavb{display:flex;gap:7px;flex-wrap:wrap}
+.anavb button{background:rgba(255,255,255,.13);color:#fff;border:none;padding:6px 13px;border-radius:7px;cursor:pointer;font-family:'Hind Siliguri',sans-serif;font-size:.8rem;transition:background .25s}
+.anavb button:hover{background:rgba(255,255,255,.22)}
+.abody{padding:24px 4%;max-width:1200px;margin:0 auto}
+.scards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:26px}
+.sc{background:#fff;border-radius:13px;padding:18px;box-shadow:var(--sh);border-left:4px solid var(--leaf)}
+.sc.b2{border-left-color:var(--amber)}.sc.b3{border-left-color:var(--blue)}.sc.b4{border-left-color:var(--red)}.sc.b5{border-left-color:var(--green)}
+.scn{font-size:1.8rem;font-weight:700;color:var(--forest);font-family:'Playfair Display',serif}
+.scl{font-size:.72rem;color:var(--stone);margin-top:2px}
+.sbar{display:flex;gap:9px;margin-bottom:18px;flex-wrap:wrap}
+.sbar input{flex:1;min-width:170px;padding:9px 13px;border:1.5px solid rgba(74,140,92,.2);border-radius:9px;font-family:'Hind Siliguri',sans-serif;font-size:.85rem;outline:none;background:#fff;color:var(--forest)}
+.sbar input:focus{border-color:var(--leaf)}
+.sbar select{padding:9px 11px;border:1.5px solid rgba(74,140,92,.2);border-radius:9px;font-family:'Hind Siliguri',sans-serif;font-size:.83rem;outline:none;background:#fff;cursor:pointer;color:var(--forest)}
+.tw{background:#fff;border-radius:15px;overflow:hidden;box-shadow:var(--sh);overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:800px}
+thead{background:var(--forest);color:#fff}
+th{padding:12px 13px;font-size:.74rem;font-weight:600;text-align:left;letter-spacing:.4px;white-space:nowrap}
+td{padding:11px 13px;font-size:.79rem;border-bottom:1px solid rgba(74,140,92,.08);vertical-align:middle;color:var(--forest)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(74,140,92,.035)}
+.bg{display:inline-block;font-size:.63rem;font-weight:700;padding:3px 8px;border-radius:18px;letter-spacing:.4px;white-space:nowrap}
+.bg-pending{background:rgba(212,137,26,.14);color:var(--amber)}
+.bg-approved{background:rgba(39,174,96,.14);color:var(--green)}
+.bg-rejected{background:rgba(231,76,60,.14);color:var(--red)}
+.bg-paid{background:rgba(41,128,185,.14);color:var(--blue)}
+.bg-unpaid{background:rgba(231,76,60,.14);color:var(--red)}
+.abtns{display:flex;gap:4px;flex-wrap:wrap}
+.ab{font-size:.67rem;font-weight:700;padding:4px 8px;border:none;border-radius:6px;cursor:pointer;font-family:'Hind Siliguri',sans-serif;transition:opacity .18s,transform .18s;white-space:nowrap}
+.ab:hover{opacity:.8;transform:translateY(-1px)}
+.ab-ap{background:rgba(39,174,96,.14);color:var(--green)}
+.ab-rj{background:rgba(231,76,60,.14);color:var(--red)}
+.ab-pd{background:rgba(41,128,185,.14);color:var(--blue)}
+.ab-vw{background:rgba(74,140,92,.11);color:var(--leaf)}
+.ab-iv{background:rgba(201,168,76,.14);color:var(--amber)}
+.ab-dl{background:rgba(231,76,60,.1);color:var(--red)}
+.ab-ed{background:rgba(74,140,92,.11);color:var(--moss)}
+.nodata{text-align:center;padding:34px;color:var(--stone);font-size:.86rem}
+
+/* DETAIL MODAL */
+.dmod{display:none;position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:4000;align-items:center;justify-content:center;padding:18px}
+.dmod.op{display:flex}
+.dcard{background:#fff;border-radius:18px;padding:28px;max-width:520px;width:100%;max-height:88vh;overflow-y:auto;position:relative}
+.dcard h3{font-size:1.1rem;font-weight:700;color:var(--forest);margin-bottom:16px}
+.dr{display:flex;gap:9px;margin-bottom:8px;font-size:.82rem;align-items:flex-start}
+.drl{font-weight:600;color:var(--stone);min-width:130px;flex-shrink:0}
+.drv{color:var(--forest);word-break:break-word}
+
+/* PAYMENT CONFIRM */
+#pmmod{display:none;position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:4500;align-items:center;justify-content:center;padding:18px}
+#pmmod.op{display:flex}
+.pmcard{background:#fff;border-radius:18px;padding:28px;max-width:420px;width:100%;position:relative}
+.pmcard h3{font-size:1.05rem;font-weight:700;color:var(--forest);margin-bottom:7px}
+.pmcard>p{font-size:.82rem;color:var(--stone);margin-bottom:15px;line-height:1.58}
+.pmainfo{background:var(--cream);border-radius:11px;padding:13px 15px;margin-bottom:13px;font-size:.8rem;color:var(--stone);line-height:1.65}
+.pmainfo strong{color:var(--forest)}
+.pmainfo2{background:rgba(41,128,185,.07);border:1px solid rgba(41,128,185,.2);border-radius:8px;padding:10px 13px;margin-bottom:15px;font-size:.78rem;color:#2471a3;line-height:1.6}
+.pmacts{display:flex;gap:9px}
+.pmok{flex:1;background:linear-gradient(135deg,var(--leaf),var(--moss));color:#fff;border:none;padding:10px;border-radius:9px;font-family:'Hind Siliguri',sans-serif;font-size:.87rem;font-weight:600;cursor:pointer}
+.pmcn{flex:1;background:transparent;color:var(--stone);border:1.5px solid rgba(74,140,92,.18);padding:10px;border-radius:9px;font-family:'Hind Siliguri',sans-serif;font-size:.87rem;font-weight:600;cursor:pointer}
+
+/* CONFIRM DIALOG */
+#confDlg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:5000;align-items:center;justify-content:center;padding:18px}
+#confDlg.op{display:flex}
+.confc{background:#fff;border-radius:16px;padding:26px;max-width:360px;width:100%;text-align:center}
+.confc h3{font-size:1rem;font-weight:700;color:var(--forest);margin-bottom:8px}
+.confc p{font-size:.83rem;color:var(--stone);margin-bottom:18px;line-height:1.55}
+.confc .cacts{display:flex;gap:9px;justify-content:center}
+.confc .cok{background:var(--red);color:#fff;border:none;padding:10px 24px;border-radius:9px;font-family:'Hind Siliguri',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer}
+.confc .ccn{background:transparent;color:var(--stone);border:1.5px solid rgba(74,140,92,.2);padding:10px 24px;border-radius:9px;font-family:'Hind Siliguri',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer}
+
+/* EDIT MODAL */
+#editMod{display:none;position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:4500;align-items:center;justify-content:center;padding:18px}
+#editMod.op{display:flex}
+.edcard{background:#fff;border-radius:18px;padding:28px;max-width:540px;width:100%;max-height:88vh;overflow-y:auto;position:relative}
+.edcard h3{font-size:1.1rem;font-weight:700;color:var(--forest);margin-bottom:16px}
+
+/* INVOICE */
+#invarea{display:none;font-family:'Hind Siliguri',sans-serif;padding:28px;max-width:560px;margin:0 auto;background:#fff;color:#1a3a2a}
+#invarea .ih{text-align:center;border-bottom:2px solid #4a8c5c;padding-bottom:14px;margin-bottom:18px}
+#invarea .ih h2{font-size:1.4rem;font-weight:700;color:#1a3a2a}
+#invarea .ih p{font-size:.77rem;color:#8c7b68;margin-top:3px}
+#invarea .ibid{text-align:center;background:#1a3a2a;color:#fdfaf5;padding:9px;border-radius:7px;margin-bottom:18px;font-size:1rem;font-weight:700;letter-spacing:3px}
+#invarea table{width:100%;border-collapse:collapse;margin-bottom:14px}
+#invarea th{background:#f4efe6;padding:8px 11px;font-size:.77rem;text-align:left;border-bottom:1px solid #b8d4c2;color:#1a3a2a}
+#invarea td{padding:8px 11px;font-size:.79rem;border-bottom:1px solid #e8dcc8;color:#1a3a2a}
+#invarea .itot{text-align:right;font-size:1rem;font-weight:700;padding:8px 0;color:#1a3a2a}
+#invarea .ifoot{text-align:center;font-size:.72rem;color:#8c7b68;border-top:1px solid #b8d4c2;padding-top:12px;margin-top:9px}
+
+/* RESPONSIVE */
+@media(max-width:880px){
+  .nlinks{display:none}.hbg{display:flex}
+  .ag,.bwrap,.foodg,.lg{grid-template-columns:1fr;gap:28px}
+  .gg{grid-template-columns:1fr 1fr}
+  .gi:first-child{grid-row:span 1}.gi:nth-child(5){grid-column:span 1}
+  .pcards{grid-template-columns:1fr 1fr}
+}
+@media(max-width:580px){
+  section{padding:52px 0}
+  .hbtns{flex-direction:column;align-items:center}
+  .btnp,.btno{width:200px;text-align:center}
+  .gg{grid-template-columns:1fr}
+  .frow,.pcards{grid-template-columns:1fr}
+  .fcard{padding:20px 15px}
+  .pmsel{grid-template-columns:1fr 1fr}
+  .aimgs{grid-template-columns:1fr}
+  .ai.tall{grid-row:span 1}
+  .ai img,.ai.tall img{height:200px}
+  .scards{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div id="invarea"></div>
+
+<!-- TERMS MODAL -->
+<div class="mov" id="termsModal">
+  <div class="mod">
+    <button class="xcl" onclick="cm('termsModal')">✕</button>
+    <h2 class="modtit">📋 শর্তাবলী ও নিয়মকানুন</h2>
+    <div class="modbody">
+      <h4>১. বুকিং ও পেমেন্ট</h4>
+      <p>বুকিং নিশ্চিত করতে মোট ভাড়ার ন্যূনতম ৫০% অগ্রিম bKash বা Nagad-এ পরিশোধ করতে হবে। বাকি টাকা চেক-ইনের দিন পরিশোধ করা যাবে।</p>
+      <h4>২. চেক-ইন / চেক-আউট</h4>
+      <ul><li>চেক-ইন সময়: সকাল ১২টার পর</li><li>চেক-আউট সময়: পরের দিন সকাল ১১টার আগে</li></ul>
+      <h4>৩. বাতিল নীতি</h4>
+      <p>চেক-ইনের ৪৮ ঘণ্টা আগে বাতিল — সম্পূর্ণ রিফান্ড। ২৪ ঘণ্টা আগে — ৫০% রিফান্ড। এরপরে বাতিল — কোনো রিফান্ড নেই।</p>
+      <h4>৪. আচরণবিধি</h4>
+      <ul><li>রাত ১০টার পর উচ্চস্বরে শব্দ নিষেধ</li><li>পরিবেশ পরিষ্কার রাখুন</li><li>অ্যালকোহল সম্পূর্ণ নিষিদ্ধ</li></ul>
+      <h4>৫. একচেটিয়া বুকিং</h4>
+      <p>পাহাড় বাড়ি রিসোর্টে একসময়ে মাত্র একটি গ্রুপ বুকিং পাবে। আপনার বুকিং সময়ে অন্য কোনো অতিথি থাকবে না।</p>
+      <h4>৬. দায়বদ্ধতা</h4>
+      <p>রিসোর্ট কর্তৃপক্ষ অতিথিদের ব্যক্তিগত মালামালের ক্ষতির জন্য দায়ী নয়।</p>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="dmod" id="detailModal">
+  <div class="dcard">
+    <button class="xcl" onclick="cm('detailModal')">✕</button>
+    <h3>📋 বুকিং বিবরণ</h3>
+    <div id="detailContent"></div>
+  </div>
+</div>
+
+<!-- PAYMENT CONFIRM MODAL -->
+<div id="pmmod">
+  <div class="pmcard">
+    <button class="xcl" onclick="cm('pmmod')">✕</button>
+    <h3>💳 পেমেন্ট যাচাইকরণ</h3>
+    <p>এই বুকিংয়ের পেমেন্ট "পেইড" হিসেবে চিহ্নিত করতে চান?</p>
+    <div class="pmainfo" id="pmInfo"></div>
+    <div class="pmainfo2">ℹ️ <strong>এই অ্যাকশনের অর্থ:</strong> পেমেন্ট যাচাই করা হয়েছে এবং বুকিং আর্থিকভাবে নিশ্চিত। অতিথির জন্য ইনভয়েস তৈরি করা যাবে।</div>
+    <div class="pmacts">
+      <button class="pmok" id="pmOkBtn">✓ হ্যাঁ, পেমেন্ট নিশ্চিত</button>
+      <button class="pmcn" onclick="cm('pmmod')">বাতিল</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM DELETE DIALOG -->
+<div id="confDlg">
+  <div class="confc">
+    <h3>⚠️ নিশ্চিত করুন</h3>
+    <p id="confMsg">এই বুকিংটি মুছে ফেলতে চান?</p>
+    <div class="cacts">
+      <button class="cok" id="confOk">হ্যাঁ, মুছুন</button>
+      <button class="ccn" onclick="cm('confDlg')">বাতিল</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div id="editMod">
+  <div class="edcard">
+    <button class="xcl" onclick="cm('editMod')">✕</button>
+    <h3>✏️ বুকিং সম্পাদনা</h3>
+    <div id="editContent"></div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div id="adminLogin">
+  <div class="alcard">
+    <button class="xcl" onclick="cm('adminLogin')" style="top:12px;right:12px">✕</button>
+    <h2>🔐 অ্যাডমিন লগইন</h2>
+    <p>শুধুমাত্র অনুমোদিত ব্যক্তিদের জন্য</p>
+    <div class="fg2"><label>ইউজারনেম</label><input type="text" id="auser" placeholder="Username" onkeydown="if(event.key==='Enter')dal()"></div>
+    <div class="fg2"><label>পাসওয়ার্ড</label><input type="password" id="apass" placeholder="Password" onkeydown="if(event.key==='Enter')dal()"></div>
+    <button class="btnn" onclick="dal()">লগইন করুন</button>
+    <div class="aerr" id="aerr">❌ ভুল ইউজারনেম বা পাসওয়ার্ড!</div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+  <div class="anav">
+    <h1>🏕️ পাহাড় বাড়ি রিসোর্ট — অ্যাডমিন প্যানেল</h1>
+    <div class="anavb">
+      <button onclick="loadAdmin()">🔄 রিফ্রেশ</button>
+      <button onclick="adminOut()">লগআউট ↩</button>
+    </div>
+  </div>
+  <div class="abody">
+    <div class="scards" id="astats"></div>
+    <div class="sbar">
+      <input type="text" id="asrch" placeholder="🔍 নাম, ফোন বা বুকিং আইডি দিয়ে খুঁজুন..." oninput="rtable()">
+      <select id="fsts" onchange="rtable()">
+        <option value="">সব স্ট্যাটাস</option>
+        <option value="pending">অপেক্ষমান</option>
+        <option value="approved">অনুমোদিত</option>
+        <option value="rejected">বাতিল</option>
+      </select>
+      <select id="fpay" onchange="rtable()">
+        <option value="">পেমেন্ট সব</option>
+        <option value="paid">পেইড</option>
+        <option value="unpaid">আনপেইড</option>
+      </select>
+    </div>
+    <div class="tw">
+      <table>
+        <thead><tr>
+          <th>বুকিং আইডি</th><th>নাম</th><th>ফোন</th><th>প্যাকেজ</th>
+          <th>চেক-ইন</th><th>চেক-আউট</th><th>মোট</th>
+          <th>পেমেন্ট</th><th>স্ট্যাটাস</th><th>অ্যাকশন</th>
+        </tr></thead>
+        <tbody id="atbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nb" href="#hero">
+    <div class="nl">প</div>
+    <div class="nn">পাহাড় বাড়ি <span>PAHAR BARI RESORT</span></div>
+  </a>
+  <ul class="nlinks">
+    <li><a href="#about">পরিচিতি</a></li>
+    <li><a href="#facilities">সুবিধা</a></li>
+    <li><a href="#pricing">প্যাকেজ</a></li>
+    <li><a href="#gallery">গ্যালারি</a></li>
+    <li><a href="#booking">বুকিং</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">যোগাযোগ</a></li>
+    <li><a href="javascript:void(0)" onclick="om('adminLogin')" class="nadm">⚙ অ্যাডমিন</a></li>
+  </ul>
+  <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+</nav>
+<div class="mmenu" id="mmenu">
+  <a href="#about" onclick="cmnav()">পরিচিতি</a>
+  <a href="#facilities" onclick="cmnav()">সুবিধা</a>
+  <a href="#pricing" onclick="cmnav()">প্যাকেজ ও মূল্য</a>
+  <a href="#gallery" onclick="cmnav()">গ্যালারি</a>
+  <a href="#booking" onclick="cmnav()">বুকিং করুন</a>
+  <a href="#faq" onclick="cmnav()">FAQ</a>
+  <a href="#contact" onclick="cmnav()">যোগাযোগ</a>
+  <a href="javascript:void(0)" onclick="om('adminLogin');cmnav()">⚙ অ্যাডমিন প্যানেল</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hbg-img"></div>
+  <div class="hc">
+    <span class="hbadge">🌿 Lauchapra Garo Hills, Bakshiganj</span>
+    <h1 class="htitle">পাহাড় বাড়ি রিসোর্ট</h1>
+    <p class="htag">প্রকৃতির মাঝে শান্তির বাড়ি</p>
+    <div class="hbtns">
+      <a href="#booking" class="btnp">📅 এখনই বুকিং করুন</a>
+      <a href="#about" class="btno">আরও জানুন ↓</a>
+    </div>
+  </div>
+  <div class="hscroll"><span>স্ক্রল করুন</span><div class="sline"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="ag">
+      <div class="aimgs rl">
+        <div class="ai tall"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcUAXAfRdF1wXDzucPZbIWLfzKxHlIM7eHvhwvBFd06W3SqkY495xLzpMpaoru8dLb3LQG-ygKe1UY7BMhKzzhqZ7xp8MbD2MJhZdxouP08SCyviKEo83R1A-z3tabgF753pnwjhvyZ55Mtw4iS3dSeR75J8TNpiR1ldFU73geT0t8AizRAZPEQaXrQ84/s2048/FB_IMG_1779293237855.jpg" alt="Forest cottage" loading="lazy"></div>
+        <div class="ai"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXun_c76dPGQNoNbbUy4uY7aBThD5_anbn8NPoAmAoYPKWpHIUIqzKTd2q-JK9dbLlw5s61wzeJCsD7MAbVWDCH4sIHPbKsMnsv7oLpxHClF1OAhDD_Ss7f3ds8hGrnlASK4-9eQi0QwY3l3DM54qXxD09GAc28rGq70wZMCotWUekTG2Wy3ncQRuNzBw/s2048/FB_IMG_1779293236061.jpg" alt="Nature view" loading="lazy"></div>
+        <div class="ai"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEidYSUsyDpdYhETQXnWYbZKnSIqNUD-5De6K4TktZ3BzLBtzBSc-GRtjJvOO22wFAAlBVcY-rrtbywwgEF-AeP69IdhBp4CMy5cFrIZvKDT9TTIvT0Zc0A7v7kocYrXSyyNY8UnC8df9AQ6SXOnaamLW2erEYym48MS3mkmpdLRSgtr3UNQakqXYCQP1HM/s1280/FB_IMG_1779293241492.jpg" alt="Hills" loading="lazy"></div>
+      </div>
+      <div class="rr">
+        <span class="stag">আমাদের পরিচিতি</span>
+        <h2 class="stitle">গারো পাহাড়ের বুকে এক অনন্য অনুভব</h2>
+        <div class="divl"></div>
+        <p class="ssub">পাহাড় বাড়ি রিসোর্ট — বাংলাদেশের জামালপুর জেলার বকশীগঞ্জ উপজেলার লাউচাপড়া গারো পাহাড়ে অবস্থিত। পাহাড়ের শীতল বাতাস, সবুজের সমারোহ এবং প্রকৃতির নিবিড় সৌন্দর্যের মধ্যে খুঁজে পাবেন মনের প্রশান্তি।</p>
+        <div class="afs">
+          <div class="af"><div class="afi">🔒</div><div><h4>একান্ত নিজস্ব পরিবেশ</h4><p>আপনার বুকিং সময়ে পুরো রিসোর্ট শুধু আপনার — অন্য কেউ নয়</p></div></div>
+          <div class="af"><div class="afi">🏔️</div><div><h4>পাহাড়ের নৈসর্গিক দৃশ্য</h4><p>চারদিক পাহাড়ঘেরা মনোমুগ্ধকর প্রাকৃতিক পরিবেশ</p></div></div>
+          <div class="af"><div class="afi">🍽️</div><div><h4>সুস্বাদু দেশীয় খাবার</h4><p>তাজা উপকরণে তৈরি ঐতিহ্যবাহী বাংলাদেশি রান্না (অ্যাড-অন)</p></div></div>
+          <div class="af"><div class="afi">🐘</div><div><h4>বন্যপ্রাণী দর্শন</h4><p>মৌসুমে হাতির পাল ও বনজ প্রাণী দেখার সুযোগ</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section id="facilities">
+  <div class="container">
+    <div class="tc rv"><span class="stag">সুযোগ-সুবিধা</span><h2 class="stitle">আমাদের সুবিধাসমূহ</h2><div class="divl c"></div></div>
+    <div class="facg" style="margin-top:36px">
+      <div class="fc rv"><span class="fci">🏠</span><h3>একচেটিয়া বুকিং</h3><p>আপনার বুকিং সময়ে শুধু আপনারাই থাকবেন — পুরো রিসোর্ট শুধু আপনার।</p><span class="fbg">Exclusive</span></div>
+      <div class="fc rv"><span class="fci">🛏️</span><h3>আরামদায়ক রুম</h3><p>কাপল, পরিবার ও গ্রুপ — সকলের জন্য বিশেষ ব্যবস্থা।</p><span class="fbg">২-৬ জন</span></div>
+      <div class="fc rv"><span class="fci">🚿</span><h3>এটাচড বাথরুম</h3><p>প্রতিটি রুমে পরিষ্কার ও আধুনিক সংযুক্ত বাথরুম।</p><span class="fbg">Attached</span></div>
+      <div class="fc rv"><span class="fci">🏔️</span><h3>পাহাড়ের দৃশ্য</h3><p>রুম থেকে সরাসরি গারো পাহাড়ের অপরূপ দৃশ্য উপভোগ।</p><span class="fbg">Mountain View</span></div>
+      <div class="fc rv"><span class="fci">📸</span><h3>ফটো স্পট</h3><p>একাধিক সুন্দর ইনস্টাগ্রামযোগ্য ফটো স্পট রিসোর্টজুড়ে।</p><span class="fbg">Photo Spots</span></div>
+      <div class="fc rv"><span class="fci">🔥</span><h3>ক্যাম্পফায়ার</h3><p>রাতের আকাশের নিচে বন্ধু ও পরিবারের সাথে ক্যাম্পফায়ার।</p><span class="fbg x">অতিরিক্ত চার্জ</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOD -->
+<section id="food">
+  <div class="container">
+    <div class="foodg">
+      <div class="finfo rl">
+        <span class="stag">খাবার মেনু</span>
+        <h2 class="stitle">প্রকৃতির সাথে সুস্বাদু খাবার</h2>
+        <div class="divl"></div>
+        <p class="ssub">খাবার বুকিংয়ের সাথে আলাদাভাবে যোগ করা যাবে। তাজা ও স্বাস্থ্যকর উপকরণে তৈরি ঐতিহ্যবাহী বাংলাদেশি রান্না।</p>
+        <div class="fpbadge">
+          <div class="fpn">৳১০০০</div>
+          <div class="fpi"><p>প্রতি জনের জন্য</p><span>চার বেলা সম্পূর্ণ প্যাকেজ</span></div>
+        </div>
+      </div>
+      <div class="rr">
+        <div class="mtabs">
+          <button class="mtab ac" onclick="swm('lunch',this)">🍛 দুপুর</button>
+          <button class="mtab" onclick="swm('snack',this)">☕ বিকাল</button>
+          <button class="mtab" onclick="swm('dinner',this)">🌙 রাত</button>
+          <button class="mtab" onclick="swm('brkfst',this)">☀️ সকাল</button>
+        </div>
+        <div class="mpanel ac" id="m-lunch">
+          <div class="mcard"><h4>🍛 দুপুরের খাবার</h4>
+            <ul class="mitems"><li>ভাত</li><li>মুরগী</li><li>মাছ</li><li>মসুর ডাল</li><li>ভর্তা</li><li>গ্রীন সালাদ</li></ul>
+          </div>
+        </div>
+        <div class="mpanel" id="m-snack">
+          <div class="mcard"><h4>☕ বিকালের নাস্তা</h4>
+            <ul class="mitems"><li>কেক / মুড়ি মাখা</li><li>চা</li><li>বিস্কুট</li></ul>
+          </div>
+        </div>
+        <div class="mpanel" id="m-dinner">
+          <div class="mcard"><h4>🌙 রাতের খাবার</h4>
+            <ul class="mitems"><li>ভাত</li><li>মুরগী</li><li>মসুর ডাল</li><li>ভর্তা / সবজি</li><li>গ্রীন সালাদ</li></ul>
+          </div>
+        </div>
+        <div class="mpanel" id="m-brkfst">
+          <div class="mcard"><h4>☀️ সকালের নাস্তা</h4>
+            <ul class="mitems"><li>খিচুড়ি</li><li>ডিম ভুনা / ডিম ভাজি</li><li>গ্রীন সালাদ</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="tc rv">
+      <span class="stag">প্যাকেজ ও মূল্য</span>
+      <h2 class="stitle">আপনার প্যাকেজ বেছে নিন</h2>
+      <div class="divl c"></div>
+      <p class="ssub" style="margin:0 auto">সম্পূর্ণ রিসোর্ট শুধু আপনার — আপনার বুকিং সময়ে অন্য কোনো অতিথি থাকবে না।</p>
+    </div>
+    <div class="pcards">
+      <!-- Couple -->
+      <div class="pc rv">
+        <span class="pci">💑</span>
+        <p class="pcn">কাপল প্যাকেজ</p>
+        <p class="pcc">সর্বোচ্চ ২ জন</p>
+        <p class="pcp">৳৩০০০</p>
+        <p class="pcnt">প্রতি রাত — সম্পূর্ণ রিসোর্ট</p>
+        <div class="pcdv"></div>
+        <ul class="pcfs">
+          <li>পুরো রিসোর্ট শুধু আপনার দুজনের</li>
+          <li>এটাচড বাথরুম</li>
+          <li>পাহাড়ের অপরূপ দৃশ্য</li>
+          <li>ফটো স্পট অ্যাক্সেস</li>
+          <li>চেক-ইন ১২টা / চেক-আউট ১১টা</li>
+        </ul>
+        <div class="pcfa">🍽️ খাবার আলাদা: ৳১০০০/জন/দিন</div>
+        <div class="pcmp"><strong>মেনু (অ্যাড-অন):</strong><br>দুপুর: ভাত, মুরগী, মাছ, ডাল, ভর্তা, সালাদ<br>বিকাল: কেক/মুড়ি মাখা, চা, বিস্কুট<br>রাত: ভাত, মুরগী, ডাল, ভর্তা/সবজি, সালাদ<br>সকাল: খিচুড়ি, ডিম ভুনা/ভাজি, সালাদ</div>
+        <a href="#booking" class="btnp" style="font-size:.82rem;padding:10px 20px;margin-top:12px;display:inline-block">বুকিং করুন</a>
+      </div>
+      <!-- Family -->
+      <div class="pc rv">
+        <span class="pci">👨‍👩‍👧‍👦</span>
+        <p class="pcn">ফ্যামিলি প্যাকেজ</p>
+        <p class="pcc">সর্বোচ্চ ৫ জন</p>
+        <p class="pcp">৳৩০০০</p>
+        <p class="pcnt">প্রতি রাত — সম্পূর্ণ রিসোর্ট</p>
+        <div class="pcdv"></div>
+        <ul class="pcfs">
+          <li>পুরো রিসোর্ট শুধু আপনাদের</li>
+          <li>এটাচড বাথরুম</li>
+          <li>পাহাড়ের অপরূপ দৃশ্য</li>
+          <li>সব ফটো স্পট</li>
+          <li>চেক-ইন ১২টা / চেক-আউট ১১টা</li>
+        </ul>
+        <div class="pcfa">🍽️ খাবার আলাদা: ৳১০০০/জন/দিন</div>
+        <div class="pcmp"><strong>মেনু (অ্যাড-অন):</strong><br>দুপুর: ভাত, মুরগী, মাছ, ডাল, ভর্তা, সালাদ<br>বিকাল: কেক/মুড়ি মাখা, চা, বিস্কুট<br>রাত: ভাত, মুরগী, ডাল, ভর্তা/সবজি, সালাদ<br>সকাল: খিচুড়ি, ডিম ভুনা/ভাজি, সালাদ</div>
+        <a href="#booking" class="btnp" style="font-size:.82rem;padding:10px 20px;margin-top:12px;display:inline-block">বুকিং করুন</a>
+      </div>
+      <!-- Full Resort -->
+      <div class="pc ft rv">
+        <span class="pcbg">জনপ্রিয়</span>
+        <span class="pci">🏕️</span>
+        <p class="pcn">পুরো রিসোর্ট প্যাকেজ</p>
+        <p class="pcc">যেকোনো সংখ্যক অতিথি</p>
+        <p class="pcp">৳৬০০০</p>
+        <p class="pcnt">প্রতি রাত — Exclusive Access</p>
+        <div class="pcdv"></div>
+        <ul class="pcfs">
+          <li>পুরো রিসোর্ট সম্পূর্ণ আপনার</li>
+          <li>সব রুম ও এটাচড বাথরুম</li>
+          <li>পাহাড়ের সম্পূর্ণ দৃশ্য</li>
+          <li>সব ফটো স্পট</li>
+          <li>ক্যাম্পফায়ার সুবিধা (অ্যাড-অন)</li>
+          <li>চেক-ইন ১২টা / চেক-আউট ১১টা</li>
+        </ul>
+        <div class="pcfa">🍽️ খাবার আলাদা: ৳১০০০/জন/দিন</div>
+        <div class="pcmp"><strong>মেনু (অ্যাড-অন):</strong><br>দুপুর: ভাত, মুরগী, মাছ, ডাল, ভর্তা, সালাদ<br>বিকাল: কেক/মুড়ি মাখা, চা, বিস্কুট<br>রাত: ভাত, মুরগী, ডাল, ভর্তা/সবজি, সালাদ<br>সকাল: খিচুড়ি, ডিম ভুনা/ভাজি, সালাদ</div>
+        <a href="#booking" class="btnp" style="font-size:.82rem;padding:10px 20px;margin-top:12px;display:inline-block">বুকিং করুন</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="tc rv"><span class="stag">গ্যালারি</span><h2 class="stitle">প্রকৃতির রূপ দেখুন</h2><div class="divl c"></div></div>
+    <div class="gg rv">
+      <div class="gi"><img class="gimg" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjA4oSYu6gVg0DOA7HmZA50mlsJTaPGtMTrOVZmS-DFOzOuH0xFaQjgYPZvJt6lek_d29zKcuq24g8DiRkM7emsCDceY2mWMrK5PI1V7o8uCNCvW1h2Znb_0oKho6VKzGfK1NG-YaDc-ovJG7RymsPASv0i8uMyGvbiikA9pc2m_FQYCPtjJUSaCqPJk3s/s2000/FB_IMG_1779293266316.jpg" alt="Mountain" loading="lazy"><div class="gov"><span>🏔️ গারো পাহাড়</span></div></div>
+      <div class="gi"><img class="gimg" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhiXj5JRCEHPIVhSiro6fCF04vLtgbkcoaBFdHzBX8S9AKnW_9mfP7p82ILXeMMERT1M0L8l_URfBnNJ8DOWqdUbfPjE-Mq6RJUVRDifh0dgVu1P2nGAVt2mjkCXc1iPcSip-9ER0MsWrkzVB4MfeRToeO7S-U50lcm1_mNkbQfAxXnbcBPVV71Wlf00hE/s2000/FB_IMG_1779293263588.jpg" alt="Cottage" loading="lazy"><div class="gov"><span>🏡 আমাদের কটেজ</span></div></div>
+      <div class="gi"><img class="gimg" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYQLdqQZzsPAEL5WxfXNFO4XjOM61f22AZ_sgLk3mnkqd9T6jTrgEWEXWju5SR23w9tmLt9y_l6s-_M4g5gOpi1EgNw9xSa6L-Wr5MzSlGP0Rl9UjR1qOUvkSat7bGt0f_t1UzhtdcdcIFH7H809r0VWmPyXM3aVm30_B5CSWI-LEQmkpjZHbEjsTtTeo/s2048/FB_IMG_1779293261519.jpg" alt="Hills" loading="lazy"><div class="gov"><span>🌄 পাহাড়ের দৃশ্য</span></div></div>
+      <div class="gi"><img class="gimg" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhb_h-0KO0T6MpCpF8gaLDch2Vr7E-uomCFzG3cM8wfV4Caa-SdG4SOXnFtqoJjw2mhHQdxEjwPC7mXU3mqPRb-5YVp7ob8RdlKAhzBxibWEX6tnFF_6WXKq3H7BsNW7N77GWEE2V0QiK8AAxJdgA6I_M_CBBlU-ftbR9tAqxOnb1_5Kv1w3VrePAVSK7Q/s2048/FB_IMG_1779293258194.jpg" alt="Resort" loading="lazy"><div class="gov"><span>🏠 রিসোর্ট ভিউ</span></div></div>
+      <div class="gi"><img class="gimg" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&q=80" alt="Forest" loading="lazy"><div class="gov"><span>🌳 বনের ভিতরে</span></div></div>
+      <div class="gi"><img class="gimg" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghjdPP-k7e5yFo-_FeKw1IX04EcE2_F44-Vma1pR1d5sn0BUFGbquvAXCfsgMmuMZfSwCkn7TLWL3DYfgBOc0urDLhMjQ65r8qR4kfdrRLzuoumvomHaYxHNYFqKWUOb4uzONNvyaZTw-WqmX4Q09_EejrudnhfjwE6iX2iOeQ6YK2Og5trvciv44EJho/s2048/FB_IMG_1779293256025.jpg" alt="Nature" loading="lazy"><div class="gov"><span>🌿 প্রকৃতির ডাক</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="container">
+    <div class="bwrap">
+      <div class="binfo rl">
+        <span class="stag">অনলাইন বুকিং</span>
+        <h2 class="stitle">আজই ভ্রমণ নিশ্চিত করুন</h2>
+        <div class="divl"></div>
+        <p class="ssub" style="margin-bottom:18px">ফর্ম পূরণ করুন ও পেমেন্ট করুন। দ্রুত কনফার্মেশন পাবেন।</p>
+        <div id="avbanner" class="avb ch">🔍 প্রাপ্যতা যাচাই করা হচ্ছে...</div>
+        <div class="ics">
+          <div class="ic"><span class="ico">🔒</span><span>একসময়ে একটিমাত্র বুকিং — একান্ত অভিজ্ঞতা</span></div>
+          <div class="ic"><span class="ico">💰</span><span>bKash / Nagad পেমেন্ট সুবিধা</span></div>
+          <div class="ic"><span class="ico">📱</span><span>তাৎক্ষণিক বুকিং আইডি ও কনফার্মেশন</span></div>
+          <div class="ic"><span class="ico">🍽️</span><span>খাবার যোগ করুন ৳১০০০/জন/দিন</span></div>
+        </div>
+      </div>
+      <div class="rr">
+        <div class="fcard" id="fcard">
+          <div class="stpind">
+            <div class="stp ac" id="s1">১. তথ্য</div>
+            <div class="stp" id="s2">২. পেমেন্ট</div>
+            <div class="stp" id="s3">৩. সম্পন্ন</div>
+          </div>
+
+          <!-- STEP 1 -->
+          <div class="fs ac" id="st1">
+            <p class="fhead">ব্যক্তিগত ও বুকিং তথ্য</p>
+            <p class="fsubh">* চিহ্নিত ঘর অবশ্যই পূরণ করুন</p>
+            <div class="fg2">
+              <label>পূর্ণ নাম *</label>
+              <input type="text" id="fn" placeholder="আপনার পূর্ণ নাম">
+              <p class="em" id="en">নাম লিখুন</p>
+            </div>
+            <div class="frow">
+              <div class="fg2">
+                <label>মোবাইল নম্বর *</label>
+                <input type="tel" id="fph" placeholder="01XXXXXXXXX" oninput="chkConf()">
+                <p class="em" id="eph">সঠিক নম্বর দিন</p>
+              </div>
+              <div class="fg2">
+                <label>ইমেইল (ঐচ্ছিক)</label>
+                <input type="email" id="fem" placeholder="email@example.com">
+              </div>
+            </div>
+            <div class="frow">
+              <div class="fg2">
+                <label>আইডি ধরন *</label>
+                <select id="fidt">
+                  <option value="">-- নির্বাচন --</option>
+                  <option value="NID">জাতীয় পরিচয়পত্র (NID)</option>
+                  <option value="Passport">পাসপোর্ট</option>
+                </select>
+                <p class="em" id="eidt">নির্বাচন করুন</p>
+              </div>
+              <div class="fg2">
+                <label>আইডি নম্বর *</label>
+                <input type="text" id="fidn" placeholder="আইডি নম্বর">
+                <p class="em" id="eidn">নম্বর লিখুন</p>
+              </div>
+            </div>
+            <div class="fg2">
+              <label>প্যাকেজ *</label>
+              <select id="frt" onchange="calc()">
+                <option value="">-- প্যাকেজ নির্বাচন করুন --</option>
+                <option value="couple">কাপল প্যাকেজ — সর্বোচ্চ ২ জন — ৳২৫০০/রাত</option>
+                <option value="family">ফ্যামিলি প্যাকেজ — সর্বোচ্চ ৫ জন — ৳৩০০০/রাত</option>
+                <option value="full">পুরো রিসোর্ট প্যাকেজ — ৳৬০০০/রাত</option>
+              </select>
+              <p class="em" id="ert">প্যাকেজ নির্বাচন করুন</p>
+            </div>
+            <div class="frow">
+              <div class="fg2">
+                <label>প্রাপ্তবয়স্ক *</label>
+                <input type="number" id="fad" min="1" max="20" value="2" onchange="calc()">
+              </div>
+              <div class="fg2">
+                <label>শিশু</label>
+                <input type="number" id="fch" min="0" max="10" value="0">
+              </div>
+            </div>
+            <div class="frow">
+              <div class="fg2">
+                <label>চেক-ইন তারিখ *</label>
+                <input type="date" id="fci" onchange="calc();chkConf()">
+                <p class="em" id="eci">তারিখ দিন</p>
+              </div>
+              <div class="fg2">
+                <label>চেক-আউট তারিখ *</label>
+                <input type="date" id="fco" onchange="calc();chkConf()">
+                <p class="em" id="eco">তারিখ দিন</p>
+              </div>
+            </div>
+            <div class="faddon">
+              <div class="fadte">🍽️ খাবার প্যাকেজ যোগ করুন (ঐচ্ছিক)</div>
+              <div class="fatch">
+                <input type="checkbox" id="ffd" onchange="calc()">
+                <label for="ffd">হ্যাঁ, খাবার যোগ করতে চাই (৳১০০০/জন/দিন)</label>
+              </div>
+              <div id="fgr" class="fgr" style="display:none">
+                <label>কতজনের জন্য?</label>
+                <input type="number" id="ffg" min="1" max="20" value="2" onchange="calc()">
+                <span class="fps" id="fps"></span>
+              </div>
+              <p style="font-size:.72rem;color:var(--stone);margin-top:7px;line-height:1.6">
+                দুপুর: ভাত, মুরগী, মাছ, ডাল, ভর্তা | বিকাল: কেক/মুড়ি, চা | রাত: ভাত, মুরগী, ডাল | সকাল: খিচুড়ি, ডিম
+              </p>
+            </div>
+            <div class="fg2">
+              <label>বিশেষ অনুরোধ</label>
+              <textarea id="fnt" rows="2" placeholder="কোনো বিশেষ প্রয়োজন থাকলে লিখুন..."></textarea>
+            </div>
+            <div class="psum" id="psum">
+              <p class="pst">মূল্য সারসংক্ষেপ</p>
+              <div class="psr"><span id="ppkg">—</span><span id="ppp">—</span></div>
+              <div class="psr"><span id="pnts">—</span><span id="pnp">—</span></div>
+              <div class="psr" id="pfr" style="display:none"><span id="pfd">—</span><span id="pfp">—</span></div>
+              <div class="pstot"><span>মোট পরিশোধযোগ্য</span><span id="ptot">৳০</span></div>
+            </div>
+            <div class="cbanner" id="cbanner">
+              ⛔ এই তারিখে ইতোমধ্যে একটি বুকিং রয়েছে। অন্য তারিখ বেছে নিন অথবা
+              <a href="https://wa.me/8801716878401" target="_blank"> 📱 WhatsApp-এ যোগাযোগ করুন</a>।
+            </div>
+            <button class="btnn" id="nxtbtn" onclick="go2()">পরবর্তী ধাপ →</button>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="fs" id="st2">
+            <p class="fhead">পেমেন্ট সম্পন্ন করুন</p>
+            <p class="fsubh">নিচের মেথডে পেমেন্ট করুন, তারপর তথ্য দিন</p>
+            <div class="pmsel">
+              <div class="pmo" onclick="selPM('bkash',this)">
+                <div class="pmoi">💳</div>
+                <div class="pmon">bKash</div>
+                <div class="pmonu">01716-878401</div>
+              </div>
+              <div class="pmo" onclick="selPM('nagad',this)">
+                <div class="pmoi">📱</div>
+                <div class="pmon">Nagad</div>
+                <div class="pmonu">01716-878401</div>
+              </div>
+            </div>
+            <p class="em" id="epm" style="display:none;margin-bottom:9px">পেমেন্ট মেথড নির্বাচন করুন</p>
+            <div class="pdets" id="pdets">
+              <p style="font-size:.76rem;color:var(--stone);text-align:center;margin-bottom:9px">নিচের নম্বরে <strong id="pmtn" style="color:var(--forest)">Send Money</strong> করুন:</p>
+              <div class="pdnum">📱 01716-878401</div>
+              <div class="fg2">
+                <label>ট্র্যানজেকশন আইডি (TxnID) *</label>
+                <input type="text" id="ftx" placeholder="Transaction ID">
+                <p class="em" id="etx">TxnID লিখুন</p>
+              </div>
+              <div class="frow">
+                <div class="fg2">
+                  <label>সেন্ডার নম্বর *</label>
+                  <input type="tel" id="fsd" placeholder="01XXXXXXXXX">
+                  <p class="em" id="esd">নম্বর দিন</p>
+                </div>
+                <div class="fg2">
+                  <label>পেমেন্ট পরিমাণ *</label>
+                  <input type="number" id="fam" placeholder="৳">
+                  <p class="em" id="eam">পরিমাণ দিন</p>
+                </div>
+              </div>
+              <div class="fg2">
+                <label>পেমেন্ট স্ক্রিনশট লিংক (ঐচ্ছিক)</label>
+                <input type="url" id="fsc" placeholder="https://drive.google.com/... বা ImgBB লিংক">
+                <p style="font-size:.7rem;color:var(--stone);margin-top:3px">Google Drive বা ImgBB-তে আপলোড করে লিংক দিন</p>
+              </div>
+            </div>
+            <div class="trow">
+              <input type="checkbox" id="ftm">
+              <label for="ftm">আমি <a href="javascript:void(0)" onclick="om('termsModal')">শর্তাবলী ও নিয়মকানুন</a> পড়েছি এবং সম্মত আছি।</label>
+            </div>
+            <p class="em" id="etm">শর্তাবলীতে সম্মত হন</p>
+            <button class="btnn" onclick="go3()" style="margin-top:13px">✓ বুকিং নিশ্চিত করুন</button>
+            <button class="btnb" onclick="goB(1)">← পূর্ববর্তী ধাপ</button>
+          </div>
+
+          <!-- STEP 3 SUCCESS -->
+          <div class="fs" id="st3">
+            <div class="scard" id="scard">
+              <div class="sico">🎉</div>
+              <h3 style="font-size:1.2rem;font-weight:700;color:var(--forest);margin-bottom:7px">বুকিং সম্পন্ন হয়েছে!</h3>
+              <p style="font-size:.83rem;color:var(--stone);margin-bottom:13px">আপনার বুকিং সফলভাবে সংরক্ষিত। অ্যাডমিন যাচাইয়ের পর জানানো হবে।</p>
+              <div class="bidb">
+                <p class="bidl">আপনার বুকিং আইডি</p>
+                <p class="bid" id="showbid">—</p>
+              </div>
+              <div id="atimer" style="margin:10px 0;display:none">
+                <div class="tbadge" id="tbadge">⏱️ অ্যাডমিন অনুমোদনের অপেক্ষায়...</div>
+              </div>
+              <p style="font-size:.79rem;color:var(--stone);margin:10px 0">এই বুকিং আইডিটি সংরক্ষণ করুন। যোগাযোগে প্রয়োজন হবে।</p>
+              <a id="wacnf" href="#" target="_blank" class="wacb">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.121.554 4.112 1.528 5.836L0 24l6.338-1.502A11.941 11.941 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.66-.504-5.19-1.383l-.373-.221-3.863.916.982-3.771-.243-.389A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                WhatsApp-এ নিশ্চিতকরণ পাঠান
+              </a>
+              <button class="btnb" onclick="rst()" style="margin-top:9px">নতুন বুকিং করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="container">
+    <div class="lg">
+      <div class="rl">
+        <span class="stag">আমাদের অবস্থান</span>
+        <h2 class="stitle">আমাদের খুঁজে নিন</h2>
+        <div class="divl"></div>
+        <div class="ld"><div class="ldi">📍</div><div><h4>ঠিকানা</h4><p>লাউচাপড়া গারো হিলস, বকশীগঞ্জ,<br>জামালপুর, বাংলাদেশ</p></div></div>
+        <div class="ld"><div class="ldi">🚗</div><div><h4>যানবাহন</h4><p>ঢাকা থেকে বকশীগঞ্জ হয়ে লাউচাপড়া</p></div></div>
+        <div class="ld"><div class="ldi">⏱️</div><div><h4>দূরত্ব</h4><p>ঢাকা: ৪-৫ ঘণ্টা | ময়মনসিংহ: ২ ঘণ্টা</p></div></div>
+        <div class="ld"><div class="ldi">📞</div><div><h4>যোগাযোগ</h4><p><a href="tel:+8801716878401" style="color:var(--leaf);font-weight:600">01716-878401</a></p></div></div>
+      </div>
+      <div class="mapw rv">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57875!2d89.9908!3d25.0567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3758fbe9fbaf63ff%3A0x7a4c3a5c7e5f6b0!2sBakshiganj%2C%20Jamalpur!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="tc rv"><span class="stag">সাধারণ প্রশ্ন</span><h2 class="stitle">প্রায়ই জিজ্ঞাসিত প্রশ্ন</h2><div class="divl c"></div></div>
+    <div class="faqlist rv">
+      <div class="faqit"><div class="faqq" onclick="tfaq(this)">চেক-ইন ও চেক-আউটের সময় কত? <span class="fa">▾</span></div><div class="faqa"><p>চেক-ইন সময়: সকাল ১২টার পর। চেক-আউট সময়: পরের দিন সকাল ১১টার আগে। আর্লি চেক-ইন বা লেট চেক-আউটের জন্য আগে যোগাযোগ করুন।</p></div></div>
+      <div class="faqit"><div class="faqq" onclick="tfaq(this)">একসাথে কি অন্য গ্রুপ থাকবে? <span class="fa">▾</span></div><div class="faqa"><p>না। পাহাড় বাড়িতে একসময়ে মাত্র একটি গ্রুপ থাকতে পারবে। আপনার বুকিং সময়ে পুরো রিসোর্ট শুধু আপনার।</p></div></div>
+      <div class="faqit"><div class="faqq" onclick="tfaq(this)">খাবার কি বুকিংয়ের মধ্যে আছে? <span class="fa">▾</span></div><div class="faqa"><p>না, খাবার আলাদাভাবে যোগ করতে হবে। প্রতি জনের জন্য ৳১০০০ (চার বেলা)। বুকিং ফর্মেই যোগ করা যাবে।</p></div></div>
+      <div class="faqit"><div class="faqq" onclick="tfaq(this)">বাতিল করলে টাকা ফেরত পাবো? <span class="fa">▾</span></div><div class="faqa"><p>৪৮ ঘণ্টা আগে বাতিল: সম্পূর্ণ রিফান্ড। ২৪ ঘণ্টা আগে: ৫০% রিফান্ড। এরপরে: কোনো রিফান্ড নেই।</p></div></div>
+      <div class="faqit"><div class="faqq" onclick="tfaq(this)">ঢাকা থেকে কিভাবে আসব? <span class="fa">▾</span></div><div class="faqa"><p>মহাখালী বা কমলাপুর থেকে বকশীগঞ্জগামী বাসে উঠুন। বকশীগঞ্জ থেকে সিএনজিতে লাউচাপড়া আসুন। আগে জানালে পিকআপের ব্যবস্থাও হতে পারে।</p></div></div>
+      <div class="faqit"><div class="faqq" onclick="tfaq(this)">অগ্রিম কত টাকা দিতে হবে? <span class="fa">▾</span></div><div class="faqa"><p>বুকিং নিশ্চিত করতে মোট ভাড়ার ন্যূনতম ৫০% অগ্রিম bKash বা Nagad-এ দিতে হবে। বাকি টাকা চেক-ইনের দিন।</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="tc rv">
+      <span class="stag">যোগাযোগ</span>
+      <h2 class="stitle" style="color:#fff">আমাদের সাথে যোগাযোগ করুন</h2>
+      <div class="divl c" style="background:linear-gradient(to right,var(--gold),var(--amber))"></div>
+    </div>
+    <div class="ccards">
+      <div class="ccard rv"><span class="cico">📱</span><h4>WHATSAPP / CALL</h4><a href="https://wa.me/8801716878401">01716-878401</a></div>
+      <div class="ccard rv"><span class="cico">📍</span><h4>ঠিকানা</h4><p>লাউচাপড়া, বকশীগঞ্জ<br>জামালপুর, বাংলাদেশ</p></div>
+      <div class="ccard rv"><span class="cico">⏰</span><h4>সময়সূচি</h4><p>সকাল ৮টা – রাত ১০টা<br>সপ্তাহের সব দিন</p></div>
+    </div>
+    <div class="wacta rv">
+      <a href="https://wa.me/8801716878401?text=আমি পাহাড় বাড়ি রিসোর্টে বুকিং দিতে আগ্রহী।" target="_blank" class="wab">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.121.554 4.112 1.528 5.836L0 24l6.338-1.502A11.941 11.941 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.66-.504-5.19-1.383l-.373-.221-3.863.916.982-3.771-.243-.389A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp-এ সরাসরি মেসেজ করুন
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="fb">পাহাড় বাড়ি রিসোর্ট 🌿</p>
+  <div class="fl">
+    <a href="#about">পরিচিতি</a><a href="#facilities">সুবিধা</a><a href="#pricing">প্যাকেজ</a>
+    <a href="#gallery">গ্যালারি</a><a href="#booking">বুকিং</a><a href="#faq">FAQ</a>
+    <a href="javascript:void(0)" onclick="om('termsModal')">শর্তাবলী</a>
+  </div>
+  <p>লাউচাপড়া গারো হিলস, বকশীগঞ্জ, জামালপুর, বাংলাদেশ</p>
+  <p style="margin-top:6px;font-size:.7rem;opacity:.35">© ২০২৫ পাহাড় বাড়ি রিসোর্ট | সর্বস্বত্ব সংরক্ষিত</p>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<a id="waFloat" href="https://wa.me/8801716878401" target="_blank" title="WhatsApp">
+  <svg width="23" height="23" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.121.554 4.112 1.528 5.836L0 24l6.338-1.502A11.941 11.941 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.66-.504-5.19-1.383l-.373-.221-3.863.916.982-3.771-.243-.389A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script>
+// ── FIREBASE ──
+firebase.initializeApp({databaseURL:"https://hill-house-9f47e-default-rtdb.firebaseio.com/"});
+const db = firebase.database();
+
+const PRICES = {couple:3000, family:3000, full:6000};
+const PNAMES = {couple:'কাপল প্যাকেজ', family:'ফ্যামিলি প্যাকেজ', full:'পুরো রিসোর্ট প্যাকেজ'};
+
+// ── NAV ──
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('sc',scrollY>55);
+  document.getElementById('scrollTop').classList.toggle('vis',scrollY>380);
+},{passive:true});
+document.getElementById('hbg').addEventListener('click',function(){
+  this.classList.toggle('op');
+  document.getElementById('mmenu').classList.toggle('op');
+});
+function cmnav(){
+  document.getElementById('hbg').classList.remove('op');
+  document.getElementById('mmenu').classList.remove('op');
+}
+
+// ── MODALS ──
+function om(id){document.getElementById(id).classList.add('op');}
+function cm(id){document.getElementById(id).classList.remove('op');}
+['termsModal','adminLogin','detailModal','pmmod','confDlg','editMod'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('click',e=>{if(e.target===el)cm(id);});
+});
+
+// ── REVEAL ──
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting)e.target.classList.add('v');
+}),{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv,.rl,.rr').forEach((el,i)=>{
+  el.style.transitionDelay=(i%6)*.06+'s';
+  obs.observe(el);
+});
+
+// ── SMOOTH SCROLL ──
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+scrollY-66,behavior:'smooth'});}
+}));
+
+// ── MENU TABS ──
+function swm(id,btn){
+  document.querySelectorAll('.mtab').forEach(b=>b.classList.remove('ac'));
+  document.querySelectorAll('.mpanel').forEach(p=>p.classList.remove('ac'));
+  btn.classList.add('ac');
+  document.getElementById('m-'+id).classList.add('ac');
+}
+
+// ── FAQ ──
+function tfaq(el){
+  el.classList.toggle('op');
+  el.nextElementSibling.classList.toggle('op');
+}
+
+// ── PRICING CALC ──
+let totPrice=0, foodTot=0;
+function calc(){
+  const rt=document.getElementById('frt').value;
+  const ci=document.getElementById('fci').value;
+  const co=document.getElementById('fco').value;
+  const foodOn=document.getElementById('ffd').checked;
+  const fg=parseInt(document.getElementById('ffg').value)||1;
+  document.getElementById('fgr').style.display=foodOn?'flex':'none';
+  if(!rt||!ci||!co)return;
+  const nts=Math.ceil((new Date(co)-new Date(ci))/86400000);
+  if(nts<1)return;
+  const rc=PRICES[rt]*nts;
+  foodTot=foodOn?1000*fg*nts:0;
+  document.getElementById('fps').textContent=foodOn?'৳'+foodTot.toLocaleString():'';
+  totPrice=rc+foodTot;
+  document.getElementById('ppkg').textContent=PNAMES[rt];
+  document.getElementById('ppp').textContent='৳'+PRICES[rt].toLocaleString()+'/রাত';
+  document.getElementById('pnts').textContent=nts+' রাত';
+  document.getElementById('pnp').textContent='৳'+rc.toLocaleString();
+  if(foodOn){
+    document.getElementById('pfr').style.display='flex';
+    document.getElementById('pfd').textContent='খাবার ('+fg+' জন × '+nts+' দিন)';
+    document.getElementById('pfp').textContent='৳'+foodTot.toLocaleString();
+  }else{
+    document.getElementById('pfr').style.display='none';
+  }
+  document.getElementById('ptot').textContent='৳'+totPrice.toLocaleString();
+  document.getElementById('psum').classList.add('sh');
+  document.getElementById('fam').value=totPrice;
+}
+
+// ── CONFLICT CHECK ──
+let hasConflict=false;
+async function chkConf(){
+  const ci=document.getElementById('fci').value;
+  const co=document.getElementById('fco').value;
+  if(!ci||!co)return;
+  const cb=document.getElementById('cbanner');
+  const nb=document.getElementById('nxtbtn');
+  cb.style.display='none'; hasConflict=false;
+  try{
+    const snap=await db.ref('bookings').once('value');
+    if(!snap.val()){nb.style.opacity='1';return;}
+    const nci=new Date(ci), nco=new Date(co);
+    for(const b of Object.values(snap.val())){
+      if(b.status==='rejected')continue;
+      if(nci<new Date(b.checkout)&&nco>new Date(b.checkin)){
+        hasConflict=true;
+        cb.style.display='block';
+        nb.style.opacity='.5';
+        return;
+      }
+    }
+    nb.style.opacity='1';
+  }catch(e){console.warn(e);}
+}
+
+// ── PAYMENT METHOD ──
+let selpm='';
+function selPM(type,el){
+  document.querySelectorAll('.pmo').forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel'); selpm=type;
+  document.getElementById('pdets').classList.add('sh');
+  document.getElementById('pmtn').textContent=type==='bkash'?'bKash Send Money':'Nagad Send Money';
+  document.getElementById('epm').style.display='none';
+}
+
+// ── VALIDATE ──
+function vf(id,eid,fn,msg){
+  const el=document.getElementById(id), em=document.getElementById(eid);
+  if(!fn(el.value)){
+    el.classList.add('er');
+    if(msg)em.textContent=msg;
+    em.classList.add('sh');
+    return false;
+  }
+  el.classList.remove('er'); em.classList.remove('sh');
+  return true;
+}
+function val1(){
+  let ok=true;
+  if(!vf('fn','en',v=>v.trim().length>1))ok=false;
+  if(!vf('fph','eph',v=>/^01[3-9]\d{8}$/.test(v.replace(/-/g,''))))ok=false;
+  if(!vf('fidt','eidt',v=>v!==''))ok=false;
+  if(!vf('fidn','eidn',v=>v.trim().length>3))ok=false;
+  if(!vf('frt','ert',v=>v!==''))ok=false;
+  if(!vf('fci','eci',v=>v!==''))ok=false;
+  if(!vf('fco','eco',v=>v!==''))ok=false;
+  const ci=document.getElementById('fci').value, co=document.getElementById('fco').value;
+  if(ci&&co){
+    const td=new Date(); td.setHours(0,0,0,0);
+    if(new Date(ci)<td){
+      vf('fci','eci',()=>false,'আজকের পরের তারিখ দিন'); ok=false;
+    } else if(new Date(co)<=new Date(ci)){
+      vf('fco','eco',()=>false,'চেক-আউট পরে হতে হবে'); ok=false;
+    }
+  }
+  return ok;
+}
+function val2(){
+  let ok=true;
+  if(!selpm){document.getElementById('epm').style.display='block';ok=false;}
+  if(!vf('ftx','etx',v=>v.trim().length>3))ok=false;
+  if(!vf('fsd','esd',v=>/^01[3-9]\d{8}$/.test(v.replace(/-/g,''))))ok=false;
+  if(!vf('fam','eam',v=>parseFloat(v)>0))ok=false;
+  if(!document.getElementById('ftm').checked){
+    document.getElementById('etm').classList.add('sh'); ok=false;
+  } else {
+    document.getElementById('etm').classList.remove('sh');
+  }
+  return ok;
+}
+
+// ── STEP CONTROL ──
+function setstp(n){
+  [1,2,3].forEach(i=>{
+    document.getElementById('st'+i).classList.toggle('ac',i===n);
+    const s=document.getElementById('s'+i);
+    s.classList.remove('ac','dn');
+    if(i===n) s.classList.add('ac');
+    else if(i<n) s.classList.add('dn');
+  });
+}
+function go2(){
+  if(hasConflict){alert('এই তারিখে বুকিং আছে। অন্য তারিখ বেছে নিন।');return;}
+  if(!val1())return;
+  calc();
+  setstp(2);
+  document.getElementById('fcard').scrollIntoView({behavior:'smooth',block:'start'});
+}
+async function go3(){
+  if(!val2())return;
+  const bid='PBR'+Date.now().toString().slice(-8);
+  document.getElementById('showbid').textContent=bid;
+  const foodOn=document.getElementById('ffd').checked;
+  const data={
+    bookingId:bid,
+    name:document.getElementById('fn').value.trim(),
+    phone:document.getElementById('fph').value.trim(),
+    email:document.getElementById('fem').value||'',
+    idType:document.getElementById('fidt').value,
+    idNumber:document.getElementById('fidn').value.trim(),
+    packageType:document.getElementById('frt').value,
+    adults:parseInt(document.getElementById('fad').value)||1,
+    children:parseInt(document.getElementById('fch').value)||0,
+    checkin:document.getElementById('fci').value,
+    checkout:document.getElementById('fco').value,
+    foodPackage:foodOn,
+    foodGuests:foodOn?parseInt(document.getElementById('ffg').value)||1:0,
+    foodCost:foodTot,
+    note:document.getElementById('fnt').value||'',
+    paymentMethod:selpm,
+    txnId:document.getElementById('ftx').value.trim(),
+    senderNum:document.getElementById('fsd').value.trim(),
+    amount:parseFloat(document.getElementById('fam').value)||0,
+    screenshotLink:document.getElementById('fsc').value||'',
+    totalPrice:totPrice,
+    status:'pending',
+    paymentStatus:'unpaid',
+    approvedAt:null,
+    createdAt:new Date().toISOString()
+  };
+  try{await db.ref('bookings/'+bid).set(data);}catch(e){console.warn('DB err:',e);}
+  const msg=`🌿 *পাহাড় বাড়ি রিসোর্ট — বুকিং নিশ্চিতকরণ*\n\n🆔 বুকিং আইডি: ${bid}\n👤 নাম: ${data.name}\n📱 ফোন: ${data.phone}\n🏠 প্যাকেজ: ${PNAMES[data.packageType]}\n📅 চেক-ইন: ${data.checkin} (সকাল ১২টা)\n📅 চেক-আউট: ${data.checkout} (সকাল ১১টা)\n👥 অতিথি: ${data.adults} জন + ${data.children} শিশু\n🍽️ খাবার: ${foodOn?'হ্যাঁ ('+data.foodGuests+' জন)'  :'না'}\n💰 মোট: ৳${totPrice.toLocaleString()}\n💳 ${selpm.toUpperCase()} TXN: ${data.txnId}`;
+  document.getElementById('wacnf').href='https://wa.me/8801716878401?text='+encodeURIComponent(msg);
+  setstp(3);
+  document.getElementById('scard').classList.add('sh');
+  startTimer(bid);
+  document.getElementById('fcard').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function goB(n){
+  setstp(n);
+  document.getElementById('fcard').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function rst(){
+  ['fn','fph','fem','fidn','ftx','fsd','fam','fnt','fsc'].forEach(id=>document.getElementById(id).value='');
+  ['fidt','frt'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fad').value=2;
+  document.getElementById('fch').value=0;
+  document.getElementById('fci').value='';
+  document.getElementById('fco').value='';
+  document.getElementById('ftm').checked=false;
+  document.getElementById('ffd').checked=false;
+  document.getElementById('psum').classList.remove('sh');
+  document.getElementById('pdets').classList.remove('sh');
+  document.getElementById('cbanner').style.display='none';
+  document.querySelectorAll('.pmo').forEach(e=>e.classList.remove('sel'));
+  document.getElementById('scard').classList.remove('sh');
+  selpm=''; totPrice=0; foodTot=0; hasConflict=false;
+  document.getElementById('nxtbtn').style.opacity='1';
+  setstp(1);
+}
+
+// ── APPROVAL TIMER ──
+function startTimer(bid){
+  const ta=document.getElementById('atimer'), tb=document.getElementById('tbadge');
+  ta.style.display='block';
+  const chk=()=>{
+    db.ref('bookings/'+bid+'/status').once('value').then(s=>{
+      const v=s.val();
+      if(v==='approved'){tb.className='tbadge';tb.innerHTML='✅ অনুমোদিত হয়েছে!';}
+      else if(v==='rejected'){tb.className='tbadge exp';tb.innerHTML='❌ বাতিল করা হয়েছে।';}
+      else setTimeout(chk,15000);
+    });
+  };
+  setTimeout(chk,8000);
+}
+
+// ── AVAILABILITY ──
+async function updAvail(){
+  const b=document.getElementById('avbanner');
+  try{
+    const snap=await db.ref('bookings').once('value');
+    if(!snap.val()){b.className='avb ok';b.innerHTML='✅ রিসোর্ট এখন উপলব্ধ! বুকিং করুন।';return;}
+    const td=new Date(); td.setHours(0,0,0,0);
+    const act=Object.values(snap.val()).filter(x=>x.status!=='rejected'&&new Date(x.checkout)>=td);
+    if(act.length){
+      const nx=act.sort((a,c)=>new Date(a.checkin)-new Date(c.checkin))[0];
+      b.className='avb bk';
+      b.innerHTML=`⛔ বর্তমানে বুকড (${nx.checkin} – ${nx.checkout})। পরে বুকিং করুন বা <a href="https://wa.me/8801716878401" target="_blank">📱 WhatsApp করুন</a>।`;
+    }else{
+      b.className='avb ok';
+      b.innerHTML='✅ রিসোর্ট এখন উপলব্ধ! বুকিং করুন।';
+    }
+  }catch(e){
+    b.className='avb ch';
+    b.innerHTML='🔍 প্রাপ্যতা যাচাই করা হচ্ছে...';
+  }
+}
+updAvail();
+
+// ═══════════════════════════════════════
+// ADMIN PANEL
+// ═══════════════════════════════════════
+const ADMIN_USER = 'paharbari';
+const ADMIN_PASS = '01716878401';
+
+function dal(){
+  const u=document.getElementById('auser').value;
+  const p=document.getElementById('apass').value;
+  if(u===ADMIN_USER && p===ADMIN_PASS){
+    cm('adminLogin');
+    document.getElementById('adminPanel').classList.add('op');
+    loadAdmin();
+  }else{
+    const ae=document.getElementById('aerr');
+    ae.classList.add('sh');
+    setTimeout(()=>ae.classList.remove('sh'),3000);
+  }
+}
+function adminOut(){
+  document.getElementById('adminPanel').classList.remove('op');
+  document.getElementById('auser').value='';
+  document.getElementById('apass').value='';
+}
+
+let allB=[];
+async function loadAdmin(){
+  try{
+    const snap=await db.ref('bookings').once('value');
+    allB=snap.val()?Object.values(snap.val()):[];
+    allB.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+  }catch(e){allB=[];}
+  rstats(); rtable();
+}
+
+function rstats(){
+  const tot=allB.length;
+  const pend=allB.filter(b=>b.status==='pending').length;
+  const appr=allB.filter(b=>b.status==='approved').length;
+  const rev=allB.filter(b=>b.paymentStatus==='paid').reduce((s,b)=>s+parseFloat(b.amount||0),0);
+  const upc=allB.filter(b=>b.status==='approved'&&new Date(b.checkin)>=new Date()).length;
+  document.getElementById('astats').innerHTML=`
+    <div class="sc"><div class="scn">${tot}</div><div class="scl">মোট বুকিং</div></div>
+    <div class="sc b2"><div class="scn">${pend}</div><div class="scl">অপেক্ষমান</div></div>
+    <div class="sc b3"><div class="scn">${appr}</div><div class="scl">অনুমোদিত</div></div>
+    <div class="sc b5"><div class="scn">${upc}</div><div class="scl">আসন্ন বুকিং</div></div>
+    <div class="sc b4"><div class="scn">৳${rev.toLocaleString()}</div><div class="scl">মোট আয়</div></div>
+  `;
+}
+
+function rtable(){
+  const q=document.getElementById('asrch').value.toLowerCase();
+  const fs=document.getElementById('fsts').value;
+  const fp=document.getElementById('fpay').value;
+  const fil=allB.filter(b=>{
+    const mq=!q||b.name?.toLowerCase().includes(q)||b.phone?.includes(q)||b.bookingId?.toLowerCase().includes(q);
+    return mq&&(!fs||b.status===fs)&&(!fp||b.paymentStatus===fp);
+  });
+  const tb=document.getElementById('atbody');
+  if(!fil.length){tb.innerHTML='<tr><td colspan="10" class="nodata">কোনো বুকিং পাওয়া যায়নি</td></tr>';return;}
+  tb.innerHTML=fil.map(b=>`<tr>
+    <td><strong style="color:var(--leaf);font-size:.75rem">${b.bookingId}</strong></td>
+    <td>${b.name||'—'}</td>
+    <td>${b.phone||'—'}</td>
+    <td style="font-size:.75rem">${PNAMES[b.packageType]||b.packageType||'—'}</td>
+    <td>${b.checkin||'—'}</td>
+    <td>${b.checkout||'—'}</td>
+    <td><strong>৳${(b.totalPrice||0).toLocaleString()}</strong></td>
+    <td><span class="bg bg-${b.paymentStatus==='paid'?'paid':'unpaid'}">${b.paymentStatus==='paid'?'পেইড':'আনপেইড'}</span></td>
+    <td><span class="bg bg-${b.status||'pending'}">${b.status==='approved'?'অনুমোদিত':b.status==='rejected'?'বাতিল':'অপেক্ষমান'}</span></td>
+    <td>
+      <div class="abtns">
+        <button class="ab ab-vw" onclick="vdetail('${b.bookingId}')">👁 দেখুন</button>
+        <button class="ab ab-ed" onclick="editBook('${b.bookingId}')">✏️ এডিট</button>
+        ${b.status!=='approved'?`<button class="ab ab-ap" onclick="ustatus('${b.bookingId}','status','approved')">✓ অনুমোদন</button>`:''}
+        ${b.status!=='rejected'?`<button class="ab ab-rj" onclick="ustatus('${b.bookingId}','status','rejected')">✕ বাতিল</button>`:''}
+        ${b.paymentStatus!=='paid'?`<button class="ab ab-pd" onclick="showPmConf('${b.bookingId}')">💳 পেইড</button>`:''}
+        <button class="ab ab-iv" onclick="dlInvoice('${b.bookingId}')">🧾 ইনভয়েস</button>
+        <button class="ab ab-dl" onclick="delBook('${b.bookingId}')">🗑 মুছুন</button>
+      </div>
+    </td>
+  </tr>`).join('');
+}
+
+async function ustatus(bid,field,val){
+  const i=allB.findIndex(b=>b.bookingId===bid);
+  if(i>=0){
+    allB[i][field]=val;
+    if(field==='status'&&val==='approved') allB[i].approvedAt=new Date().toISOString();
+  }
+  try{
+    await db.ref('bookings/'+bid+'/'+field).set(val);
+    if(field==='status'&&val==='approved')
+      await db.ref('bookings/'+bid+'/approvedAt').set(new Date().toISOString());
+  }catch(e){}
+  rstats(); rtable(); updAvail();
+}
+
+// View Detail
+function vdetail(bid){
+  const b=allB.find(x=>x.bookingId===bid);
+  if(!b)return;
+  const rows=[
+    ['বুকিং আইডি',`<strong style="color:var(--leaf)">${b.bookingId}</strong>`],
+    ['নাম',b.name||'—'],
+    ['ফোন',b.phone||'—'],
+    ['ইমেইল',b.email||'নেই'],
+    ['আইডি টাইপ',b.idType||'—'],
+    ['আইডি নম্বর',b.idNumber||'—'],
+    ['প্যাকেজ',PNAMES[b.packageType]||b.packageType||'—'],
+    ['চেক-ইন',`${b.checkin||'—'} (সকাল ১২টা)`],
+    ['চেক-আউট',`${b.checkout||'—'} (সকাল ১১টা)`],
+    ['প্রাপ্তবয়স্ক',b.adults||0],
+    ['শিশু',b.children||0],
+    ['খাবার',b.foodPackage?`হ্যাঁ — ${b.foodGuests} জন — ৳${b.foodCost||0}`:'না'],
+    ['বিশেষ অনুরোধ',b.note||'নেই'],
+    ['পেমেন্ট মেথড',(b.paymentMethod||'—').toUpperCase()],
+    ['TXN ID',b.txnId||'—'],
+    ['সেন্ডার নম্বর',b.senderNum||'—'],
+    ['পেমেন্ট পরিমাণ',`৳${b.amount||0}`],
+    ['মোট মূল্য',`<strong style="color:var(--forest)">৳${(b.totalPrice||0).toLocaleString()}</strong>`],
+    ['বুকিং স্ট্যাটাস',`<span class="bg bg-${b.status||'pending'}">${b.status==='approved'?'অনুমোদিত':b.status==='rejected'?'বাতিল':'অপেক্ষমান'}</span>`],
+    ['পেমেন্ট স্ট্যাটাস',`<span class="bg bg-${b.paymentStatus==='paid'?'paid':'unpaid'}">${b.paymentStatus==='paid'?'পেইড':'আনপেইড'}</span>`],
+    ['তারিখ',b.createdAt?new Date(b.createdAt).toLocaleString('bn-BD'):'—'],
+  ];
+  let c=rows.map(([l,v])=>`<div class="dr"><span class="drl">${l}</span><span class="drv">${v}</span></div>`).join('');
+  if(b.screenshotLink){
+    c+=`<div class="dr"><span class="drl">স্ক্রিনশট</span><span class="drv"><a href="${b.screenshotLink}" target="_blank" style="color:var(--leaf);font-weight:600">🔗 লিংক দেখুন ↗</a></span></div>`;
+    c+=`<img src="${b.screenshotLink}" style="max-width:100%;border-radius:9px;margin-top:12px;border:1px solid rgba(74,140,92,.2)" onerror="this.style.display='none'" alt="Payment">`;
+  }
+  document.getElementById('detailContent').innerHTML=c;
+  om('detailModal');
+}
+
+// Edit Booking
+function editBook(bid){
+  const b=allB.find(x=>x.bookingId===bid);
+  if(!b)return;
+  document.getElementById('editContent').innerHTML=`
+    <p style="font-size:.78rem;color:var(--stone);margin-bottom:16px">বুকিং আইডি: <strong>${b.bookingId}</strong></p>
+    <div class="fg2"><label>নাম</label><input type="text" id="ed_name" value="${b.name||''}"></div>
+    <div class="fg2"><label>ফোন</label><input type="tel" id="ed_phone" value="${b.phone||''}"></div>
+    <div class="fg2"><label>চেক-ইন তারিখ</label><input type="date" id="ed_ci" value="${b.checkin||''}"></div>
+    <div class="fg2"><label>চেক-আউট তারিখ</label><input type="date" id="ed_co" value="${b.checkout||''}"></div>
+    <div class="fg2"><label>প্যাকেজ</label>
+      <select id="ed_pkg">
+        <option value="couple" ${b.packageType==='couple'?'selected':''}>কাপল প্যাকেজ — ৳৩০০০</option>
+        <option value="family" ${b.packageType==='family'?'selected':''}>ফ্যামিলি প্যাকেজ — ৳৩০০০</option>
+        <option value="full" ${b.packageType==='full'?'selected':''}>পুরো রিসোর্ট — ৳৬০০০</option>
+      </select>
+    </div>
+    <div class="fg2"><label>স্ট্যাটাস</label>
+      <select id="ed_sts">
+        <option value="pending" ${b.status==='pending'?'selected':''}>অপেক্ষমান</option>
+        <option value="approved" ${b.status==='approved'?'selected':''}>অনুমোদিত</option>
+        <option value="rejected" ${b.status==='rejected'?'selected':''}>বাতিল</option>
+      </select>
+    </div>
+    <div class="fg2"><label>পেমেন্ট স্ট্যাটাস</label>
+      <select id="ed_pay">
+        <option value="unpaid" ${b.paymentStatus==='unpaid'?'selected':''}>আনপেইড</option>
+        <option value="paid" ${b.paymentStatus==='paid'?'selected':''}>পেইড</option>
+      </select>
+    </div>
+    <div class="fg2"><label>বিশেষ অনুরোধ</label><textarea id="ed_note" rows="2">${b.note||''}</textarea></div>
+    <button class="btnn" onclick="saveEdit('${bid}')">💾 সংরক্ষণ করুন</button>
+    <button class="btnb" onclick="cm('editMod')">বাতিল</button>
+  `;
+  om('editMod');
+}
+async function saveEdit(bid){
+  const upd={
+    name:document.getElementById('ed_name').value.trim(),
+    phone:document.getElementById('ed_phone').value.trim(),
+    checkin:document.getElementById('ed_ci').value,
+    checkout:document.getElementById('ed_co').value,
+    packageType:document.getElementById('ed_pkg').value,
+    status:document.getElementById('ed_sts').value,
+    paymentStatus:document.getElementById('ed_pay').value,
+    note:document.getElementById('ed_note').value,
+    updatedAt:new Date().toISOString()
+  };
+  const ni=allB.findIndex(b=>b.bookingId===bid);
+  if(ni>=0)Object.assign(allB[ni],upd);
+  try{await db.ref('bookings/'+bid).update(upd);}catch(e){}
+  cm('editMod');
+  rstats(); rtable(); updAvail();
+}
+
+// Delete
+function delBook(bid){
+  document.getElementById('confMsg').textContent=`বুকিং আইডি "${bid}" স্থায়ীভাবে মুছে ফেলতে চান?`;
+  om('confDlg');
+  document.getElementById('confOk').onclick=async()=>{
+    try{await db.ref('bookings/'+bid).remove();}catch(e){}
+    allB=allB.filter(b=>b.bookingId!==bid);
+    cm('confDlg');
+    rstats(); rtable(); updAvail();
+  };
+}
+
+// Payment Confirm
+function showPmConf(bid){
+  const b=allB.find(x=>x.bookingId===bid);
+  if(!b)return;
+  document.getElementById('pmInfo').innerHTML=`
+    <strong>বুকিং আইডি:</strong> ${b.bookingId}<br>
+    <strong>নাম:</strong> ${b.name}<br>
+    <strong>পরিমাণ:</strong> ৳${b.amount||0}<br>
+    <strong>মেথড:</strong> ${(b.paymentMethod||'').toUpperCase()}<br>
+    <strong>TXN ID:</strong> ${b.txnId||'—'}<br>
+    <strong>সেন্ডার:</strong> ${b.senderNum||'—'}
+  `;
+  om('pmmod');
+  document.getElementById('pmOkBtn').onclick=()=>{
+    ustatus(bid,'paymentStatus','paid');
+    cm('pmmod');
+  };
+}
+
+// Invoice
+function dlInvoice(bid){
+  const b=allB.find(x=>x.bookingId===bid);
+  if(!b)return;
+  const nts=b.checkin&&b.checkout?Math.ceil((new Date(b.checkout)-new Date(b.checkin))/86400000):1;
+  const ia=document.getElementById('invarea');
+  ia.style.display='block';
+  ia.innerHTML=`
+    <div class="ih">
+      <h2>🌿 পাহাড় বাড়ি রিসোর্ট</h2>
+      <p>লাউচাপড়া গারো হিলস, বকশীগঞ্জ, জামালপুর | 📞 01716-878401</p>
+    </div>
+    <div class="ibid">ইনভয়েস নং: ${b.bookingId}</div>
+    <table>
+      <thead><tr><th>বিবরণ</th><th>তথ্য</th></tr></thead>
+      <tbody>
+        <tr><td>অতিথির নাম</td><td>${b.name}</td></tr>
+        <tr><td>মোবাইল</td><td>${b.phone}</td></tr>
+        <tr><td>প্যাকেজ</td><td>${PNAMES[b.packageType]||b.packageType}</td></tr>
+        <tr><td>চেক-ইন</td><td>${b.checkin} (সকাল ১২টা)</td></tr>
+        <tr><td>চেক-আউট</td><td>${b.checkout} (সকাল ১১টা)</td></tr>
+        <tr><td>অতিথি</td><td>${b.adults} জন প্রাপ্তবয়স্ক + ${b.children} শিশু</td></tr>
+        <tr><td>আবাসন</td><td>${nts} রাত × ৳${PRICES[b.packageType]||0} = ৳${(PRICES[b.packageType]||0)*nts}</td></tr>
+        ${b.foodPackage?`<tr><td>খাবার প্যাকেজ</td><td>${b.foodGuests} জন × ${nts} দিন × ৳১০০০ = ৳${b.foodCost||0}</td></tr>`:''}
+        <tr><td>পেমেন্ট মেথড</td><td>${(b.paymentMethod||'').toUpperCase()}</td></tr>
+        <tr><td>TXN ID</td><td>${b.txnId||'—'}</td></tr>
+        <tr><td>পেমেন্ট স্ট্যাটাস</td><td>${b.paymentStatus==='paid'?'✓ পরিশোধিত':'অপেক্ষমান'}</td></tr>
+        <tr><td>বুকিং স্ট্যাটাস</td><td>${b.status==='approved'?'✓ অনুমোদিত':b.status==='rejected'?'বাতিল':'অপেক্ষমান'}</td></tr>
+      </tbody>
+    </table>
+    <div class="itot">সর্বমোট: ৳${(b.totalPrice||0).toLocaleString()}</div>
+    <div class="ifoot">
+      ধন্যবাদ আপনার বুকিংয়ের জন্য 🙏<br>
+      ইনভয়েস তারিখ: ${new Date().toLocaleDateString('bn-BD')}<br>
+      পাহাড় বাড়ি রিসোর্ট | লাউচাপড়া গারো হিলস | 01716-878401
+    </div>
+  `;
+  const opt={
+    margin:8,
+    filename:'PaharBari_Invoice_'+bid+'.pdf',
+    image:{type:'jpeg',quality:.95},
+    html2canvas:{scale:2,useCORS:true},
+    jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}
+  };
+  html2pdf().set(opt).from(ia).save().then(()=>{ia.style.display='none';});
+}
+</script>
+</body>
+</html>
